@@ -25,5 +25,7 @@ Route::get('/dashboard', function () {
 Route::get('/', [BookController::class, 'index'])->name('index');
 Route::get('/create', [BookController::class, 'create'])->name('create');
 Route::post('/store', [BookController::class, 'store'])->name('store');
+Route::get('show/{id}', [BookController::class, 'show'])->name('show');
+
 
 require __DIR__.'/auth.php';

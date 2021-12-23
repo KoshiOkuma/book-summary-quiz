@@ -7,12 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach ($books as $book )
-    title:: <a href="{{route('show', ['id' => $book->id])}}">{{$book->title}}</a>
-    <br> 
-    @endforeach
-
-    <input type="button" onclick="location.href='{{route('create')}}' " value="新規作成">
+    <div>title::{{$book->title}}</div>
+    <div>author::{{$book->author}}</div>
+    <div>summary::{{$book->summary}}</div>
 </body>
 </html>
 

@@ -30,4 +30,11 @@ class BookController extends Controller
 
         return redirect()->route('index');
     }
+
+    public function show($id)
+    {
+        $book = Book::findOrFail($id);
+
+        return view('books.show', compact(['book']));
+    }
 }
