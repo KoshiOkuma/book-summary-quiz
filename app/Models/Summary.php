@@ -13,4 +13,10 @@ class Summary extends Model
         'book_id',
         'content',
     ];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }
+

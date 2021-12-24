@@ -15,5 +15,8 @@ class Book extends Model
         'author',
     ];
 
-
+    public function summary()
+    {
+        return $this->hasMany(Summary::class);
+    }
 }

@@ -9,7 +9,7 @@
 <body>
     @foreach ($books as $book )
     title:: <a href="{{route('show', ['id' => $book->id])}}">{{$book->title}}</a>
-    <br> 
+    <br>
     @endforeach
 
     <input type="button" onclick="location.href='{{route('create')}}' " value="新規作成">

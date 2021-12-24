@@ -9,7 +9,11 @@
 <body>
     <div>title::{{$book->title}}</div>
     <div>author::{{$book->author}}</div>
-    <div>summary::{{$book->summary}}</div>
+    @foreach ($summaries as $summary )
+    <div>summary::{{$summary['content']}}</div>
+    @endforeach
+
+    <input type="button" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' " value="要約の作成">
 </body>
 </html>
 
