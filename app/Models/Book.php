@@ -13,6 +13,7 @@ class Book extends Model
         'user_id',
         'title',
         'author',
+        'image',
     ];
 
     public function summary()

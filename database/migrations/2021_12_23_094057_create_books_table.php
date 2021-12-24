@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             ->constrained();
             $table->string('title');
             $table->string('author');
+            $table->text('image');
             $table->timestamps();
         });
     }
