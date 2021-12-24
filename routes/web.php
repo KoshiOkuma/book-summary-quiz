@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\SummaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/', [BookController::class, 'index'])->name('index');
+Route::get('/create', [BookController::class, 'create'])->name('create');
+Route::post('/store', [BookController::class, 'store'])->name('store');
+Route::get('show/{id}', [BookController::class, 'show'])->name('show');
+
+Route::get('/summary/create/{id}', [SummaryController::class, 'create'])->name('summary.create');
+Route::post('/summary/store', [SummaryController::class, 'store'])->name('summary.store');
 
 require __DIR__.'/auth.php';
