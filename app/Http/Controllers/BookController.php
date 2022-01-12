@@ -32,15 +32,15 @@ class BookController extends Controller
         // if(request('image')){
         //     $filename = $request->image->getClientOriginalName();
         // }
-        $filename = $request->image;
+            $filename = $request->image;
 
         Book::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'author' => $request->author,
+            'image' => !empty($filename) ? Storage::putFile('public/images', $filename) : '',
             // 'image' => $request->file('image')->storeAs('public/images', $filename),
-            'image' => Storage::putFile('public/images', $filename),
-        ]);
+            ]);
 
 
         return redirect()->route('index');
