@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <img src="{{ Storage::url($book->image)}}">
     <div>title::{{$book->title}}</div>
     <div>author::{{$book->author}}</div>
     @foreach ($summaries as $summary )
