@@ -50,7 +50,7 @@ class BookController extends Controller
     {
         $book = Book::findOrFail($id);
         $summaries = Book::find($id)->summary;
-
+        
         return view('books.show', compact(['book', 'summaries']));
     }
 }

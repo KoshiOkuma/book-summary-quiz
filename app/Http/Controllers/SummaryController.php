@@ -15,7 +15,7 @@ class SummaryController extends Controller
     public function store(Request $request)
     {
         Summary::create([
-            'book_id' => $request->book_id ,
+            'book_id' => $request->book_id,
             'content' => $request->content,
         ]);
 
