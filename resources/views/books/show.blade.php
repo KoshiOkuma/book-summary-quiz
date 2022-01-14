@@ -15,6 +15,7 @@
     @endforeach
 
     <input type="button" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' " value="要約の作成">
+    <input type="button" onclick="location.href='{{route('index')}}' " value="戻る">
 </body>
 </html>
 
