@@ -49,7 +49,7 @@ class BookController extends Controller
             'title' => $request->title,
             'author' => $request->author,
             // 'image' => !empty($imageFile) ? Storage::putFile('public/images', $imageFile) : '',
-            'image' => 'public/images/' . $fileNameToStore,
+            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
             // 'image' => $request->file('image')->storeAs('public/images', $filename),
             ]);
 
@@ -60,8 +60,8 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::findOrFail($id);
-        $summaries = Book::find($id)->summary;
+        // $summaries = Book::find($id)->summary;
 
-        return view('books.show', compact(['book', 'summaries']));
+        return view('books.show', compact('book'));
     }
 }

@@ -10,12 +10,13 @@
     <img src="{{ Storage::url($book->image)}}">
     <div>title::{{$book->title}}</div>
     <div>author::{{$book->author}}</div>
-    @foreach ($summaries as $summary )
-    <div>summary::{{$summary['content']}}</div>
-    @endforeach
+    @if ($book->summary)
+    <div>summary::{{$book->summary->content}}</div>
+    @endif
     <div>by {{$book->user->name}}</div>
 
     <input type="button" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' " value="要約の作成">
+    <input type="button" onclick="location.href='{{route('summary.edit', ['id' => $book->id])}}' " value="要約の編集">
     <input type="button" onclick="location.href='{{route('index')}}' " value="戻る">
 </body>
 </html>
