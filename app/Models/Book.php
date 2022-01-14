@@ -19,7 +19,7 @@ class Book extends Model
 
     public function summary()
     {
-        return $this->hasMany(Summary::class);
+        return $this->hasOne(Summary::class);
     }
 
     public function user()
