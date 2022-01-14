@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
 class BookController extends Controller
 {
@@ -32,13 +33,23 @@ class BookController extends Controller
         // if(request('image')){
         //     $filename = $request->image->getClientOriginalName();
         // }
-            $filename = $request->image;
+            $imageFile = $request->image;
+            if(!is_null($imageFile)){
+                $fileName = uniqid(rand().'_');
+                $extension = $imageFile->extension();
+                $fileNameToStore = $fileName . '.' . $extension;
+                // $originalName = $request->image->getClientOriginalName();
+                $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
+
+                Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+            }
 
         Book::create([
             'user_id' => Auth::id(),
             'title' => $request->title,
             'author' => $request->author,
-            'image' => !empty($filename) ? Storage::putFile('public/images', $filename) : '',
+            // 'image' => !empty($imageFile) ? Storage::putFile('public/images', $imageFile) : '',
+            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
             // 'image' => $request->file('image')->storeAs('public/images', $filename),
             ]);
 
@@ -49,8 +60,8 @@ class BookController extends Controller
     public function show($id)
     {
         $book = Book::findOrFail($id);
-        $summaries = Book::find($id)->summary;
-        
-        return view('books.show', compact(['book', 'summaries']));
+        // $summaries = Book::find($id)->summary;
+
+        return view('books.show', compact('book'));
     }
 }
