@@ -30,5 +30,7 @@ Route::get('show/{id}', [BookController::class, 'show'])->name('show');
 
 Route::get('/summary/create/{id}', [SummaryController::class, 'create'])->name('summary.create');
 Route::post('/summary/store', [SummaryController::class, 'store'])->name('summary.store');
+Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summary.edit');
+Route::post('/summary/update', [SummaryController::class, 'update'])->name('summary.update');
 
 require __DIR__.'/auth.php';

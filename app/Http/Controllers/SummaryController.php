@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Summary;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,24 @@ class SummaryController extends Controller
     {
         Summary::create([
             'book_id' => $request->book_id,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('index');
+    }
+
+    public function edit($id)
+    {
+        $book = Book::findOrFail($id);
+
+        return view('summary.edit', compact(['book', 'id']));
+    }
+
+    public function update(Request $request)
+    {
+
+        Summary::where('book_id', '=', $request->book_id)
+        ->update([
             'content' => $request->content,
         ]);
 
