@@ -15,6 +15,10 @@ class SummaryController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'content' => ['required'],
+        ]);
+
         Summary::create([
             'book_id' => $request->book_id,
             'content' => $request->content,
@@ -32,6 +36,10 @@ class SummaryController extends Controller
 
     public function update(Request $request)
     {
+
+        $request->validate([
+            'content' => ['required', 'string'],
+        ]);
 
         Summary::where('book_id', '=', $request->book_id)
         ->update([
