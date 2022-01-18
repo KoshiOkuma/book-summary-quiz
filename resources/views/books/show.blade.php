@@ -21,7 +21,21 @@
     <input type="button" onclick="location.href='{{route('summary.edit', ['id' => $book->id])}}' " value="要約の編集">
     @endif
     <input type="button" onclick="location.href='{{route('index')}}' " value="戻る">
+    <form id="delete_{{ $book->id }}" action="{{ route('destroy',['id' => $book->id] )}}" method="post">
+        @csrf
+        <a href="#" data-id="{{ $book->id }}" onclick="deleteBook(this)">非公開にする</a>
+    </form>
+
+    <script>
+        function deleteBook(e) {
+            'use strict'
+            if(confirm('非公開にしますか？')){
+                document.getElementById('delete_' + e.dataset.id).submit();
+            }
+        }
+    </script>
 </body>
+
 </html>
 
 

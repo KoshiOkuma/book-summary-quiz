@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->text('image')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
