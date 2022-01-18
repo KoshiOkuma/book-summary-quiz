@@ -19,8 +19,9 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::all();
+        $notShowing = Book::onlyTrashed()->get();
 
-        return view('books.index', compact(['books']));
+        return view('books.index', compact(['books', 'notShowing']));
     }
 
     public function create()

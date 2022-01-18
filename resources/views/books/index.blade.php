@@ -13,6 +13,9 @@
     @endforeach
 
     <input type="button" onclick="location.href='{{route('create')}}' " value="新規作成">
+    @foreach ($notShowing as $notShow )
+    <div>{{$notShow->title}}</div>
+    @endforeach
 </body>
 </html>
 
