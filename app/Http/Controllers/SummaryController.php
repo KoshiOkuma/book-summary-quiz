@@ -41,11 +41,18 @@ class SummaryController extends Controller
             'content' => ['required', 'string'],
         ]);
 
-        Summary::where('book_id', '=', $request->book_id)
+        Summary::where('book_id', $request->book_id)
         ->update([
             'content' => $request->content,
         ]);
 
         return redirect()->route('index');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        Summary::findOrFail($id)->delete();
+
+        return redirect()->route('show', ['id' => $request->book_id]);
     }
 }

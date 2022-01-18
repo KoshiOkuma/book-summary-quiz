@@ -26,11 +26,14 @@ Route::get('/dashboard', function () {
 Route::get('/', [BookController::class, 'index'])->name('index');
 Route::get('/create', [BookController::class, 'create'])->name('create');
 Route::post('/store', [BookController::class, 'store'])->name('store');
-Route::get('show/{id}', [BookController::class, 'show'])->name('show');
+Route::get('/show/{id}', [BookController::class, 'show'])->name('show');
+Route::post('/destroy/{id}', [BookController::class, 'destroy'])->name('destroy');
 
 Route::get('/summary/create/{id}', [SummaryController::class, 'create'])->name('summary.create');
 Route::post('/summary/store', [SummaryController::class, 'store'])->name('summary.store');
 Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summary.edit');
 Route::post('/summary/update', [SummaryController::class, 'update'])->name('summary.update');
+Route::post('/summary/destroy/{id}', [SummaryController::class, 'destroy'])->name('summary.destroy');
+
 
 require __DIR__.'/auth.php';
