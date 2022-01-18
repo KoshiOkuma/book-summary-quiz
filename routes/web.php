@@ -33,5 +33,7 @@ Route::get('/summary/create/{id}', [SummaryController::class, 'create'])->name('
 Route::post('/summary/store', [SummaryController::class, 'store'])->name('summary.store');
 Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summary.edit');
 Route::post('/summary/update', [SummaryController::class, 'update'])->name('summary.update');
+Route::post('/summary/destroy/{id}', [SummaryController::class, 'destroy'])->name('summary.destroy');
+
 
 require __DIR__.'/auth.php';

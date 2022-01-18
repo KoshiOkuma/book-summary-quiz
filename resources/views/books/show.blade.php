@@ -29,7 +29,7 @@
     <script>
         function deleteBook(e) {
             'use strict'
-            if(confirm('非公開にしますか？')){
+            if(confirm('本当に非公開にしますか？')){
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }
