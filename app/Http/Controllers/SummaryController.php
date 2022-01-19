@@ -24,7 +24,11 @@ class SummaryController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->route('index');
+        return redirect()->route('show', ['id' => $request->book_id])
+        ->with([
+            'message' => "要約を作成しました",
+            'status' => 'info'
+        ]);
     }
 
     public function edit($id)
@@ -46,13 +50,21 @@ class SummaryController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->route('index');
+        return redirect()->route('show', ['id' => $request->book_id])
+        ->with([
+            'message' => "要約を更新しました",
+            'status' => 'info'
+        ]);
     }
 
     public function destroy(Request $request, $id)
     {
         Summary::findOrFail($id)->delete();
 
-        return redirect()->route('show', ['id' => $request->book_id]);
+        return redirect()->route('show', ['id' => $request->book_id])
+        ->with([
+            'message' => "要約を削除しました",
+            'status' => 'info'
+        ]);
     }
 }

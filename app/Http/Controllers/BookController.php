@@ -60,7 +60,11 @@ class BookController extends Controller
             ]);
 
 
-        return redirect()->route('index');
+        return redirect()->route('index')
+        ->with([
+            'message' => "本の登録を実施しました",
+            'status' => 'info'
+        ]);
     }
 
     public function show($id)
@@ -74,6 +78,10 @@ class BookController extends Controller
     {
         Book::findOrFail($id)->delete();
 
-        return redirect()->route('index');
+        return redirect()->route('index')
+        ->with([
+            'message' => "本を非表示にしました",
+            'status' => 'info'
+        ]);
     }
 }
