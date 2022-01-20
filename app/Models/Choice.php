@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
-use App\Models\Book;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Summary extends Model
+class Choice extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'book_id',
+        'question_id',
         'content',
+        'is_answer',
     ];
 
-    public function book()
+    public function question()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Question::class);
     }
 }
-

@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+
+    <x-flash-message status="session('status')" />
     <img src="{{ Storage::url($book->image)}}">
     <div>title::{{$book->title}}</div>
     <div>author::{{$book->author}}</div>
@@ -25,7 +24,7 @@
         @csrf
         <a href="#" data-id="{{ $book->id }}" onclick="deleteBook(this)">非公開にする</a>
     </form>
-
+    <input type="button" onclick="location.href='{{route('questions.create', ['id' => $book->id])}}' " value="問題の作成">
     <script>
         function deleteBook(e) {
             'use strict'
@@ -34,8 +33,5 @@
             }
         }
     </script>
-</body>
 
-</html>
-
-
+</x-app-layout>
