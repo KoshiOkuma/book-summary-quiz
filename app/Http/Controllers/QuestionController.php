@@ -26,19 +26,19 @@ class QuestionController extends Controller
         Choice::create([
             'question_id' => $question_id[0]['id'],
             'content' => $request->answer,
-            'is_answer' => 1,
+            'is_answer' => \Constant::ANSWER,
         ]);
 
         Choice::create([
             'question_id' =>$question_id[0]['id'],
-            'content' => $request->fail1,
-            'is_answer' => 0,
+            'content' => $request->wrong_answer1,
+            'is_answer' => \Constant::NOT_ANSWER,
         ]);
 
         Choice::create([
             'question_id' =>$question_id[0]['id'],
-            'content' => $request->fail2,
-            'is_answer' => 0,
+            'content' => $request->wrong_answer2,
+            'is_answer' => \Constant::NOT_ANSWER,
         ]);
 
         return redirect()->route('show', ['id' => $request->book_id])
@@ -47,4 +47,12 @@ class QuestionController extends Controller
             'status' => 'info'
         ]);
     }
+
+    public function show($id)
+    {
+        $question = Question::findOrFail($id);
+
+        return view('questions.show', compact('question'));
+    }
+
 }
