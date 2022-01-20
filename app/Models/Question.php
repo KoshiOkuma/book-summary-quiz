@@ -2,10 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Choice;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Question extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'book_id',
+        'content',
+        'description',
+    ];
+
+    public function choice()
+    {
+        return $this->hasMany(Choice::class);
+    }
 }
