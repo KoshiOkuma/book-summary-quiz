@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Choice;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use PHPUnit\TextUI\XmlConfiguration\Constant;
 
 class QuestionController extends Controller
 {
@@ -26,19 +27,19 @@ class QuestionController extends Controller
         Choice::create([
             'question_id' => $question_id[0]['id'],
             'content' => $request->answer,
-            'is_answer' => 1,
+            'is_answer' => \Constant::ANSWER,
         ]);
 
         Choice::create([
             'question_id' =>$question_id[0]['id'],
             'content' => $request->fail1,
-            'is_answer' => 0,
+            'is_answer' => \Constant::NOT_ANSWER,
         ]);
 
         Choice::create([
             'question_id' =>$question_id[0]['id'],
             'content' => $request->fail2,
-            'is_answer' => 0,
+            'is_answer' => \Constant::NOT_ANSWER,
         ]);
 
         return redirect()->route('show', ['id' => $request->book_id])
