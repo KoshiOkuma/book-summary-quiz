@@ -10,14 +10,17 @@
     <div>title:{{$book->title}}</div>
     <div>author:{{$book->author}}</div>
     @if ($book->summary)
-    <div>summary:{{$book->summary->content}}</div>
+        <div>summary:{{$book->summary->content}}</div>
     @endif
+    @foreach ($book->question as $questions )
+        <div>Question:{{$questions['content']}}</div>
+    @endforeach
     <div>by {{$book->user->name}}</div>
     @if (is_null($book->summary))
-    <input type="button" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' " value="要約の作成">
+        <input type="button" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' " value="要約の作成">
     @endif
     @if ($book->summary)
-    <input type="button" onclick="location.href='{{route('summary.edit', ['id' => $book->id])}}' " value="要約の編集">
+        <input type="button" onclick="location.href='{{route('summary.edit', ['id' => $book->id])}}' " value="要約の編集">
     @endif
     <input type="button" onclick="location.href='{{route('index')}}' " value="戻る">
     <form id="delete_{{ $book->id }}" action="{{ route('destroy',['id' => $book->id] )}}" method="post">

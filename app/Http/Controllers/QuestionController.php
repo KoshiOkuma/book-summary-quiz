@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Choice;
 use App\Models\Question;
 use Illuminate\Http\Request;
-use PHPUnit\TextUI\XmlConfiguration\Constant;
 
 class QuestionController extends Controller
 {
