@@ -18,7 +18,8 @@ class CreateQuestionsTable extends Migration
             $table->foreignId('book_id')
             ->constrained();
             $table->text('content');
-            $table->text('description');
+            $table->text('description')
+            ->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\SummaryController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,7 @@ Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summ
 Route::post('/summary/update', [SummaryController::class, 'update'])->name('summary.update');
 Route::post('/summary/destroy/{id}', [SummaryController::class, 'destroy'])->name('summary.destroy');
 
+Route::get('/question/create/{id}', [QuestionController::class, 'create'])->name('questions.create');
+Route::post('/question/store', [QuestionController::class, 'store'])->name('questions.store');
 
 require __DIR__.'/auth.php';
