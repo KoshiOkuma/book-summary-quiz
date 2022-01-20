@@ -32,13 +32,13 @@ class QuestionController extends Controller
 
         Choice::create([
             'question_id' =>$question_id[0]['id'],
-            'content' => $request->fail1,
+            'content' => $request->wrong_answer1,
             'is_answer' => \Constant::NOT_ANSWER,
         ]);
 
         Choice::create([
             'question_id' =>$question_id[0]['id'],
-            'content' => $request->fail2,
+            'content' => $request->wrong_answer2,
             'is_answer' => \Constant::NOT_ANSWER,
         ]);
 

@@ -12,9 +12,9 @@
     <label for="answer">答え</label>
     <input type="text" name="answer">
     <label for="fail1">誤答1</label>
-    <input type="text" name="fail1">
+    <input type="text" name="wrong_answer1">
     <label for="fail2">誤答2</label>
-    <input type="text" name="fail2">
+    <input type="text" name="wrong_answer2">
     <label for="description">解説</label>
     <input type="text" name="description">
     <input type="hidden" name="book_id" value="{{$id}}">
