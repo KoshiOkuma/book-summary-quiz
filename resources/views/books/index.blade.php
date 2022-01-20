@@ -8,7 +8,7 @@
     <x-flash-message status="session('status')" />
 
     @foreach ($books as $book )
-    title:: <a href="{{route('show', ['id' => $book->id])}}">{{$book->title}}</a>
+    title: <a href="{{route('show', ['id' => $book->id])}}">{{$book->title}}</a>
     <br>
     @endforeach
 

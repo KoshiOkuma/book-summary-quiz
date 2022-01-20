@@ -7,10 +7,10 @@
 
     <x-flash-message status="session('status')" />
     <img src="{{ Storage::url($book->image)}}">
-    <div>title::{{$book->title}}</div>
-    <div>author::{{$book->author}}</div>
+    <div>title:{{$book->title}}</div>
+    <div>author:{{$book->author}}</div>
     @if ($book->summary)
-    <div>summary::{{$book->summary->content}}</div>
+    <div>summary:{{$book->summary->content}}</div>
     @endif
     <div>by {{$book->user->name}}</div>
     @if (is_null($book->summary))
