@@ -47,4 +47,12 @@ class QuestionController extends Controller
             'status' => 'info'
         ]);
     }
+
+    public function show($id)
+    {
+        $question = Question::findOrFail($id);
+
+        return view('questions.show', compact('question'));
+    }
+
 }
