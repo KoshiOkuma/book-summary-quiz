@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    {{-- <div>問題：{{$question->content}}</div> --}}
+    <div>問題：{{$question->content}}</div>
     <div>不正解です！</div>
 
 

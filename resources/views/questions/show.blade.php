@@ -8,9 +8,9 @@
     <div>
         @foreach ($choices as $choice )
         <a href="@if ($choice === $answer)
-        {{route('questions.answer')}}
+        {{route('questions.answer', ['id' => $question->id])}}
         @else
-        {{route('questions.wrong_answer')}}
+        {{route('questions.wrong_answer', ['id' => $question->id])}}
         @endif">{{$choice}}</a>
         @endforeach
     </div>
