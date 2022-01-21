@@ -39,5 +39,10 @@ Route::post('/summary/destroy/{id}', [SummaryController::class, 'destroy'])->nam
 Route::get('/question/create/{id}', [QuestionController::class, 'create'])->name('questions.create');
 Route::post('/question/store', [QuestionController::class, 'store'])->name('questions.store');
 Route::get('/question/show/{id}', [QuestionController::class, 'show'])->name('questions.show');
-
+Route::get('/answer', function(){
+    return view('questions.answer');
+})->name('questions.answer');
+Route::get('/wrong_answer', function(){
+    return view('questions.wrong_answer');
+})->name('questions.wrong_answer');
 require __DIR__.'/auth.php';

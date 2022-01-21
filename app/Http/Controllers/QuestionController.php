@@ -52,7 +52,15 @@ class QuestionController extends Controller
     {
         $question = Question::findOrFail($id);
 
-        return view('questions.show', compact('question'));
+        $choices = [];
+        foreach($question->choice as $choice){
+            array_push($choices, $choice['content']);
+        }
+        $answer = $choices[0];
+        shuffle($choices);
+
+
+        return view('questions.show', compact(['question', 'choices', 'answer']));
     }
 
 }

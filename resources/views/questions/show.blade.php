@@ -4,7 +4,16 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-aiu
+    <div>問題：{{$question->content}}</div>
+    <div>
+        @foreach ($choices as $choice )
+        <a href="@if ($choice === $answer)
+        {{route('questions.answer')}}
+        @else
+        {{route('questions.wrong_answer')}}
+        @endif">{{$choice}}</a>
+        @endforeach
+    </div>
 
 
 </x-app-layout>
