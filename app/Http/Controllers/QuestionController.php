@@ -48,11 +48,39 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function showBase($id)
     {
         $question = Question::findOrFail($id);
 
-        return view('questions.show', compact('question'));
+        return $question;
     }
+
+    public function show($id)
+    {
+        $question = $this->showBase($id);
+        $choices = [];
+        foreach($question->choice as $choice){
+            array_push($choices, $choice['content']);
+        }
+        $answer = $choices[0];
+        shuffle($choices);
+
+        return view('questions.show', compact(['question', 'choices', 'answer']));
+    }
+    public function answer($id)
+    {
+        $question = $this->showBase($id);
+
+        return view('questions.answer', compact('question'));
+    }
+
+    public function wrong_answer($id)
+    {
+        $question = $this->showBase($id);
+
+        return view('questions.wrong_answer', compact('question'));
+    }
+
+
 
 }
