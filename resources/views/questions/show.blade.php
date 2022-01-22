@@ -14,6 +14,7 @@
         @endif">{{$choice}}</a>
         @endforeach
     </div>
+    <input type="button" onclick="location.href='{{route('show', ['id' => $question->book_id])}}' " value="戻る">
 
 
 </x-app-layout>
