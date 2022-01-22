@@ -81,6 +81,43 @@ class QuestionController extends Controller
         return view('questions.wrong_answer', compact(['question', 'choices']));
     }
 
+    public function edit($id)
+    {
+        $question = Question::findOrFail($id);
+
+        return view('questions.edit', compact('question'));
+    }
+
+    public function update(Request $request)
+    {
+        Question::where('id', $request->id)
+        ->update([
+            'content' => $request->content,
+            'description' => $request->description,
+        ]);
+
+        Choice::where('id', $request->choices[0])
+        ->update([
+            'content' => $request->answer,
+        ]);
+
+        Choice::where('id', $request->choices[1])
+        ->update([
+            'content' => $request->wrong_answer1,
+        ]);
+
+        Choice::where('id', $request->choices[2])
+        ->update([
+            'content' => $request->wrong_answer2,
+        ]);
+
+        return redirect()->route('show', ['id' => $request->book_id])
+        ->with([
+            'message' => "問題を更新しました",
+            'status' => 'info'
+        ]);
+    }
+
 
 
 }

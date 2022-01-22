@@ -35,7 +35,7 @@ class SummaryController extends Controller
     {
         $book = Book::findOrFail($id);
 
-        return view('summary.edit', compact(['book', 'id']));
+        return view('summary.edit', compact('book'));
     }
 
     public function update(Request $request)
