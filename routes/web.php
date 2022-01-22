@@ -41,5 +41,7 @@ Route::post('/question/store', [QuestionController::class, 'store'])->name('ques
 Route::get('/question/show/{id}', [QuestionController::class, 'show'])->name('questions.show');
 Route::get('/answer/{id}', [QuestionController::class, 'answer'])->name('questions.answer');
 Route::get('/wrong_answer/{id}', [QuestionController::class, 'wrong_answer'])->name('questions.wrong_answer');
+Route::get('/question/edit/{id}', [QuestionController::class, 'edit'])->name('questions.edit');
+Route::post('/question/update', [QuestionController::class, 'update'])->name('questions.update');
 
 require __DIR__.'/auth.php';
