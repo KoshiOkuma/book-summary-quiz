@@ -14,7 +14,7 @@
         @endif
         @foreach ($book->question as $questions )
         <div>
-            Question:<a href="{{route('questions.show', ['id' =>$questions['id']])}}">{{$questions['content']}}</a>
+            Question:<a href="{{route('question.show', ['id' =>$questions['id']])}}">{{$questions['content']}}</a>
         </div>
         @endforeach
         <div>by {{$book->user->name}}</div>
@@ -29,7 +29,7 @@
             @csrf
             <a href="#" data-id="{{ $book->id }}" onclick="deleteBook(this)">非公開にする</a>
         </form>
-        <input type="button" onclick="location.href='{{route('questions.create', ['id' => $book->id])}}' " value="問題の作成">
+        <input type="button" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' " value="問題の作成">
         <script>
             function deleteBook(e) {
                 'use strict'

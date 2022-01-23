@@ -36,12 +36,13 @@ Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summ
 Route::post('/summary/update', [SummaryController::class, 'update'])->name('summary.update');
 Route::post('/summary/destroy/{id}', [SummaryController::class, 'destroy'])->name('summary.destroy');
 
-Route::get('/question/create/{id}', [QuestionController::class, 'create'])->name('questions.create');
-Route::post('/question/store', [QuestionController::class, 'store'])->name('questions.store');
-Route::get('/question/show/{id}', [QuestionController::class, 'show'])->name('questions.show');
-Route::get('/answer/{id}', [QuestionController::class, 'answer'])->name('questions.answer');
-Route::get('/wrong_answer/{id}', [QuestionController::class, 'wrong_answer'])->name('questions.wrong_answer');
-Route::get('/question/edit/{id}', [QuestionController::class, 'edit'])->name('questions.edit');
-Route::post('/question/update', [QuestionController::class, 'update'])->name('questions.update');
+Route::get('/question/create/{id}', [QuestionController::class, 'create'])->name('question.create');
+Route::post('/question/store', [QuestionController::class, 'store'])->name('question.store');
+Route::get('/question/show/{id}', [QuestionController::class, 'show'])->name('question.show');
+Route::get('/answer/{id}', [QuestionController::class, 'answer'])->name('question.answer');
+Route::get('/wrong_answer/{id}', [QuestionController::class, 'wrong_answer'])->name('question.wrong_answer');
+Route::get('/question/edit/{id}', [QuestionController::class, 'edit'])->name('question.edit');
+Route::post('/question/update', [QuestionController::class, 'update'])->name('question.update');
+Route::post('/question/destroy/{id}', [QuestionController::class, 'destroy'])->name('question.destroy');
 
 require __DIR__.'/auth.php';
