@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\MypageController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\QuestionController;
 
@@ -44,5 +45,7 @@ Route::get('/wrong_answer/{id}', [QuestionController::class, 'wrong_answer'])->n
 Route::get('/question/edit/{id}', [QuestionController::class, 'edit'])->name('question.edit');
 Route::post('/question/update', [QuestionController::class, 'update'])->name('question.update');
 Route::post('/question/destroy/{id}', [QuestionController::class, 'destroy'])->name('question.destroy');
+
+Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
 
 require __DIR__.'/auth.php';
