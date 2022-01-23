@@ -8,13 +8,13 @@
     <div>
         @foreach ($choices as $choice )
         <a href="@if ($choice === $answer)
-        {{route('questions.answer', ['id' => $question->id])}}
+        {{route('question.answer', ['id' => $question->id])}}
         @else
-        {{route('questions.wrong_answer', ['id' => $question->id])}}
+        {{route('question.wrong_answer', ['id' => $question->id])}}
         @endif">{{$choice}}</a>
         @endforeach
     </div>
-    <input type="button" onclick="location.href='{{route('questions.edit', ['id' => $question->id])}}' " value="問題の編集">
+    <input type="button" onclick="location.href='{{route('question.edit', ['id' => $question->id])}}' " value="問題の編集">
     <input type="button" onclick="location.href='{{route('show', ['id' => $question->book_id])}}' " value="戻る">
 
 

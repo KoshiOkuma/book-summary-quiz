@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-        <form action="{{ route('questions.store') }}" method="POST">
+        <form action="{{ route('question.store') }}" method="POST">
             @csrf
             <label for="content">問題文</label>
             <input type="text" name="content">

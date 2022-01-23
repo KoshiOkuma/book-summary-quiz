@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-<form action="{{ route('questions.update') }}" method="POST">
+<form action="{{ route('question.update') }}" method="POST">
     @csrf
     <label for="content">問題文</label>
     <input type="text" name="content" value="{{$question->content}}">
@@ -26,10 +26,10 @@
     <input type="submit" value="更新">
 </form>
 
-{{-- <form id="delete_{{ $book->summary->id }}" action="{{ route('summary.destroy',['id' => $book->summary->id] )}}" method="post">
+<form id="delete_{{ $question->id }}" action="{{ route('question.destroy',['id' => $question->id] )}}" method="post">
     @csrf
-    <input type="hidden" name="book_id" value="{{$book->id}}">
-    <a href="#" data-id="{{ $book->summary->id }}" onclick="deleteBook(this)">削除</a>
+    <input type="hidden" name="book_id" value="{{$question->book_id}}">
+    <a href="#" data-id="{{ $question->id }}" onclick="deleteBook(this)">削除</a>
 </form>
 
 <script>
@@ -39,6 +39,6 @@
             document.getElementById('delete_' + e.dataset.id).submit();
         }
     }
-</script> --}}
+</script>
 
 </x-app-layout>
