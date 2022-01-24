@@ -26,7 +26,6 @@ class MypageController extends Controller
             $fileName = uniqid(rand().'_');
             $extension = $imageFile->extension();
             $fileNameToStore = $fileName . '.' . $extension;
-            // $originalName = $request->image->getClientOriginalName();
             $resizedImage = Image::make($imageFile)->resize(100, 100)->encode();
 
             Storage::put('public/images/' . $fileNameToStore, $resizedImage);

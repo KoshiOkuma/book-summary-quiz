@@ -36,15 +36,11 @@ class BookController extends Controller
             'author' => ['required', 'max:10'],
         ]);
 
-        // if(request('image')){
-        //     $filename = $request->image->getClientOriginalName();
-        // }
             $imageFile = $request->image;
             if(!is_null($imageFile)){
                 $fileName = uniqid(rand().'_');
                 $extension = $imageFile->extension();
                 $fileNameToStore = $fileName . '.' . $extension;
-                // $originalName = $request->image->getClientOriginalName();
                 $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
 
                 Storage::put('public/images/' . $fileNameToStore, $resizedImage);
@@ -54,9 +50,7 @@ class BookController extends Controller
             'user_id' => Auth::id(),
             'title' => $request->title,
             'author' => $request->author,
-            // 'image' => !empty($imageFile) ? Storage::putFile('public/images', $imageFile) : '',
             'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
-            // 'image' => $request->file('image')->storeAs('public/images', $filename),
             ]);
 
 
@@ -89,7 +83,6 @@ class BookController extends Controller
             $fileName = uniqid(rand().'_');
             $extension = $imageFile->extension();
             $fileNameToStore = $fileName . '.' . $extension;
-            // $originalName = $request->image->getClientOriginalName();
             $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
 
             Storage::put('public/images/' . $fileNameToStore, $resizedImage);
