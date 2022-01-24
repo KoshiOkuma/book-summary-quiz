@@ -19,6 +19,8 @@ class MypageController extends Controller
 
     public function store(Request $request)
     {
+        $user = User::findOrFail(Auth::id());
+
         $imageFile = $request->avator;
         if(!is_null($imageFile)){
             $fileName = uniqid(rand().'_');
@@ -32,7 +34,7 @@ class MypageController extends Controller
 
         User::where('id', Auth::id())
         ->update([
-            'avator' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
+            'avator' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : $user->avator,
         ]);
 
         return redirect()->route('mypage.index')
@@ -41,5 +43,27 @@ class MypageController extends Controller
             'status' => 'info'
         ]);
     }
-    
+
+    public function edit()
+    {
+        $user = User::findOrFail(Auth::id());
+
+        return view('mypage.edit', compact('user'));
+    }
+
+    public function update(Request $request)
+    {
+        User::where('id', Auth::id())
+        ->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return redirect()->route('mypage.index')
+        ->with([
+            'message' => "プロフィールを更新しました",
+            'status' => 'info'
+        ]);
+    }
+
 }

@@ -48,5 +48,7 @@ Route::post('/question/destroy/{id}', [QuestionController::class, 'destroy'])->n
 
 Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
 Route::post('/mypage/store', [MypageController::class, 'store'])->name('mypage.store');
+Route::get('/mypage/edit/', [MypageController::class, 'edit'])->name('mypage.edit');
+Route::post('/mypage/update', [MypageController::class, 'update'])->name('mypage.update');
 
 require __DIR__.'/auth.php';

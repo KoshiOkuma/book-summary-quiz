@@ -4,6 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
+    <x-flash-message status="session('status')" />
     <form action="{{ route('mypage.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="avator">画像</label>
@@ -13,6 +14,9 @@
     <img src="{{ Storage::url($user->avator)}}">
     <div>{{$user->name}}</div>
     <div>{{$user->email}}</div>
+
+    <input type="button" onclick="location.href='{{route('mypage.edit')}}' " value="プロフィール編集">
+
 
 
 </x-app-layout>
