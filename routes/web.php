@@ -52,5 +52,7 @@ Route::get('/mypage', [MypageController::class, 'index'])->name('mypage.index');
 Route::post('/mypage/store', [MypageController::class, 'store'])->name('mypage.store');
 Route::get('/mypage/edit/', [MypageController::class, 'edit'])->name('mypage.edit');
 Route::post('/mypage/update', [MypageController::class, 'update'])->name('mypage.update');
+Route::post('/mypage/restore/{id}', [MypageController::class, 'restore'])->name('mypage.restore');
+Route::post('/mypage/forceDestroy/{id}', [MypageController::class, 'forceDestroy'])->name('mypage.forceDestroy');
 
 require __DIR__.'/auth.php';
