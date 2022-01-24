@@ -30,6 +30,7 @@
             <a href="#" data-id="{{ $book->id }}" onclick="deleteBook(this)">非公開にする</a>
         </form>
         <input type="button" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' " value="問題の作成">
+        <input type="button" onclick="location.href='{{route('edit', ['id' => $book->id])}}' " value="本の編集">
         <script>
             function deleteBook(e) {
                 'use strict'

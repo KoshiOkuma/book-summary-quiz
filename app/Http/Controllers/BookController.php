@@ -74,6 +74,41 @@ class BookController extends Controller
         return view('books.show', compact('book'));
     }
 
+    public function edit($id)
+    {
+        $book = Book::findOrFail($id);
+
+        return view('books.edit', compact('book'));
+    }
+
+    public function update(Request $request)
+    {
+
+        $imageFile = $request->image;
+        if(!is_null($imageFile)){
+            $fileName = uniqid(rand().'_');
+            $extension = $imageFile->extension();
+            $fileNameToStore = $fileName . '.' . $extension;
+            // $originalName = $request->image->getClientOriginalName();
+            $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
+
+            Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+        }
+
+        Book::where('id', $request->book_id)
+        ->update([
+            'title' => $request->title,
+            'author' => $request->author,
+            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
+        ]);
+
+        return redirect()->route('show', ['id' => $request->book_id])
+        ->with([
+            'message' => "本の内容を更新しました",
+            'status' => 'info'
+        ]);
+    }
+
     public function destroy($id)
     {
         Book::findOrFail($id)->delete();
