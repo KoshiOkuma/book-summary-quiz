@@ -39,6 +39,7 @@ Route::get('/summary/edit/{id}', [SummaryController::class, 'edit'])->name('summ
 Route::post('/summary/update', [SummaryController::class, 'update'])->name('summary.update');
 Route::post('/summary/destroy/{id}', [SummaryController::class, 'destroy'])->name('summary.destroy');
 
+Route::get('/question/index', [QuestionController::class, 'index'])->name('question.index');
 Route::get('/question/create/{id}', [QuestionController::class, 'create'])->name('question.create');
 Route::post('/question/store', [QuestionController::class, 'store'])->name('question.store');
 Route::get('/question/show/{id}', [QuestionController::class, 'show'])->name('question.show');
