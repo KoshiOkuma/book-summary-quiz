@@ -16,8 +16,9 @@ class MypageController extends Controller
         $user = User::findOrFail(Auth::id());
         $notShowing = Book::onlyTrashed()
         ->where('user_id', Auth::id())->get();
+        $myBooks = Book::where('user_id', Auth::id())->get();
 
-        return view('mypage.index', compact(['user', 'notShowing']));
+        return view('mypage.index', compact(['user', 'notShowing','myBooks']));
     }
 
     public function store(Request $request)
