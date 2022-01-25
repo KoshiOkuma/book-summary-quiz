@@ -15,13 +15,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         本の検索
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         本一覧
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('question.index')" :active="request()->routeIs('question.index')">
                         クイズ一覧
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('mypage.index')" :active="request()->routeIs('mypage.index')">
                         マイページ
                     </x-nav-link>
                 </div>
@@ -75,13 +75,13 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 本の検索
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
                 本一覧
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('question.index')" :active="request()->routeIs('question.index')">
                 クイズ一覧
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('mypage.index')" :active="request()->routeIs('dashboard')">
                 マイページ
             </x-responsive-nav-link>
         </div>
