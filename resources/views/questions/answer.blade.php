@@ -13,7 +13,9 @@
     </div>
     <div>{{$question->description}}</div>
     <input type="button" onclick="location.href='{{route('show', ['id' => $question->book_id])}}' " value="戻る">
-    <input type="button" onclick="location.href='{{route('question.index')}}' " value="クイズ一覧に戻る">
+    <div>
+        <input type="button" onclick="location.href='{{route('question.index')}}' " value="クイズ一覧に戻る">
+    </div>
 
 
 </x-app-layout>

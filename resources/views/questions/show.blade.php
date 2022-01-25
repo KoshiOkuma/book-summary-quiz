@@ -14,7 +14,9 @@
         @endif">{{$choice}}</a>
         @endforeach
     </div>
+    @if ($question->book->user_id === Auth::id())
     <input type="button" onclick="location.href='{{route('question.edit', ['id' => $question->id])}}' " value="問題の編集">
+    @endif
     <input type="button" onclick="location.href='{{route('show', ['id' => $question->book_id])}}' " value="戻る">
 
 
