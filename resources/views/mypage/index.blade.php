@@ -14,8 +14,11 @@
     <img src="{{ Storage::url($user->avator)}}">
     <div>{{$user->name}}</div>
     <div>{{$user->email}}</div>
-
     <input type="button" onclick="location.href='{{route('mypage.edit')}}' " value="プロフィール編集">
+    <div>My Books</div>
+    @foreach ($myBooks as$myBook )
+    <div>title: <a href="{{route('show', ['id' => $myBook->id])}}">{{$myBook['title']}}</a></div>
+    @endforeach
     <div>非表示リスト</div>
     @foreach ($notShowing as $notShow )
     <div>{{$notShow->title}}</div>
