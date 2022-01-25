@@ -28,7 +28,7 @@ class SummaryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => ['required'],
+            'content' => ['required', 'string'],
         ]);
 
         Summary::create([

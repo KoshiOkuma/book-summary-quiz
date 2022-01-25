@@ -4,7 +4,7 @@
             要約の編集
         </h2>
     </x-slot>
-
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 <form action="{{ route('summary.update') }}" method="POST">
     @csrf
     <textarea name="content"cols="30" rows="10">{{$book->summary->content}}</textarea>

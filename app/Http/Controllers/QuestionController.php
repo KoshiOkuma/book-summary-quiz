@@ -31,6 +31,10 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'content' => ['required', 'string', 'max:255'],
+        ]);
+
         try{
             DB::transaction(function () use($request){
                 Question::create([
@@ -113,6 +117,11 @@ class QuestionController extends Controller
 
     public function update(Request $request)
     {
+
+        $request->validate([
+            'content' => ['required', 'string', 'max:255'],
+            'description' => ['string', 'max:500'],
+        ]);
 
         try{
             DB::transaction(function () use($request) {

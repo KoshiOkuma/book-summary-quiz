@@ -61,6 +61,11 @@ class MypageController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
         User::where('id', Auth::id())
         ->update([
             'name' => $request->name,
