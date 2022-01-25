@@ -4,7 +4,7 @@
             クイズ編集
         </h2>
     </x-slot>
-
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 <form action="{{ route('question.update') }}" method="POST">
     @csrf
     <label for="content">問題文</label>

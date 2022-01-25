@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class SummaryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $summaries = Summary::all();
@@ -23,7 +28,7 @@ class SummaryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => ['required'],
+            'content' => ['required', 'string'],
         ]);
 
         Summary::create([

@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use Throwable;
 use App\Models\Choice;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -24,31 +31,42 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
-        Question::create([
-            'book_id' => $request->book_id,
-            'content' => $request->content,
-            'description' => $request->description,
+        $request->validate([
+            'content' => ['required', 'string', 'max:255'],
         ]);
 
-        $question_id = Question::latest()->get();
+        try{
+            DB::transaction(function () use($request){
+                Question::create([
+                    'book_id' => $request->book_id,
+                    'content' => $request->content,
+                    'description' => $request->description,
+                ]);
 
-        Choice::create([
-            'question_id' => $question_id[0]['id'],
-            'content' => $request->answer,
-            'is_answer' => \Constant::ANSWER,
-        ]);
+                $question_id = Question::latest()->get();
 
-        Choice::create([
-            'question_id' =>$question_id[0]['id'],
-            'content' => $request->wrong_answer1,
-            'is_answer' => \Constant::NOT_ANSWER,
-        ]);
+                Choice::create([
+                    'question_id' => $question_id[0]['id'],
+                    'content' => $request->answer,
+                    'is_answer' => \Constant::ANSWER,
+                ]);
 
-        Choice::create([
-            'question_id' =>$question_id[0]['id'],
-            'content' => $request->wrong_answer2,
-            'is_answer' => \Constant::NOT_ANSWER,
-        ]);
+                Choice::create([
+                    'question_id' =>$question_id[0]['id'],
+                    'content' => $request->wrong_answer1,
+                    'is_answer' => \Constant::NOT_ANSWER,
+                ]);
+
+                Choice::create([
+                    'question_id' =>$question_id[0]['id'],
+                    'content' => $request->wrong_answer2,
+                    'is_answer' => \Constant::NOT_ANSWER,
+                ]);
+                },2);
+            }catch(Throwable $e){
+                Log::error($e);
+                throw $e;
+             }
 
         return redirect()->route('show', ['id' => $request->book_id])
         ->with([
@@ -99,26 +117,40 @@ class QuestionController extends Controller
 
     public function update(Request $request)
     {
-        Question::where('id', $request->id)
-        ->update([
-            'content' => $request->content,
-            'description' => $request->description,
+
+        $request->validate([
+            'content' => ['required', 'string', 'max:255'],
+            'description' => ['string', 'max:500'],
         ]);
 
-        Choice::where('id', $request->choices[0])
-        ->update([
-            'content' => $request->answer,
-        ]);
+        try{
+            DB::transaction(function () use($request) {
+                Question::where('id', $request->id)
+                ->update([
+                    'content' => $request->content,
+                    'description' => $request->description,
+                ]);
 
-        Choice::where('id', $request->choices[1])
-        ->update([
-            'content' => $request->wrong_answer1,
-        ]);
+                Choice::where('id', $request->choices[0])
+                ->update([
+                    'content' => $request->answer,
+                ]);
 
-        Choice::where('id', $request->choices[2])
-        ->update([
-            'content' => $request->wrong_answer2,
-        ]);
+                Choice::where('id', $request->choices[1])
+                ->update([
+                    'content' => $request->wrong_answer1,
+                ]);
+
+                Choice::where('id', $request->choices[2])
+                ->update([
+                    'content' => $request->wrong_answer2,
+                ]);
+                },2);
+            }catch(Throwable $e){
+                Log::error($e);
+                throw $e;
+            }
+
 
         return redirect()->route('show', ['id' => $request->book_id])
         ->with([

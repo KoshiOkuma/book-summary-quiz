@@ -4,7 +4,7 @@
             本の編集
         </h2>
     </x-slot>
-
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 <form action="{{ route('update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="title">タイトル</label>

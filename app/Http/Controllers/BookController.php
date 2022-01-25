@@ -31,8 +31,8 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'max:50'],
-            'author' => ['required', 'max:10'],
+            'title' => ['required', 'string', 'max:50'],
+            'author' => ['required', 'string', 'max:50'],
         ]);
 
             $imageFile = $request->image;

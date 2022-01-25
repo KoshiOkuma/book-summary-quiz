@@ -5,12 +5,13 @@
         </h2>
     </x-slot>
 
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="title">タイトル</label>
-    <input type="text" name="title">
+    <input type="text" name="title" value="{{old('title')}}">
     <label for="author">著者</label>
-    <input type="text" name="author">
+    <input type="text" name="author" value="{{old('author')}}">
     <label for="image">画像</label>
     <input type="file" name="image" id="image" accept="image/png,image/jpeg,image/jpg">
     <input type="button" onclick="location.href='{{route('index')}}' " value="戻る">

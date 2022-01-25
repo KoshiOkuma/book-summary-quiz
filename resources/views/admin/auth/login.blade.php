@@ -1,6 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
         管理者用
+        <a href="{{route('login')}}">ユーザーログイン</a>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />

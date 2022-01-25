@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class MypageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $user = User::findOrFail(Auth::id());
@@ -56,6 +61,11 @@ class MypageController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        ]);
+
         User::where('id', Auth::id())
         ->update([
             'name' => $request->name,

@@ -165,6 +165,7 @@ return [
         'title'                 => 'タイトル',
         'username'              => 'Username',
         'year'                  => 'Year',
+        'author'                => '著者',
     ],
 
 ];

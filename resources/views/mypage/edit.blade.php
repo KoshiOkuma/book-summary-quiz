@@ -4,7 +4,7 @@
             プロフィール編集
         </h2>
     </x-slot>
-
+    <x-auth-validation-errors class="mb-4" :errors="$errors" />
 <form action="{{ route('mypage.update') }}" method="POST">
     @csrf
     <label for="answer">名前</label>
