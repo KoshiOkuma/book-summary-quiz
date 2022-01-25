@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class MypageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $user = User::findOrFail(Auth::id());
