@@ -1,15 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            クイズ一覧
+            要約一覧
         </h2>
     </x-slot>
 
     <x-flash-message status="session('status')" />
 
-    @foreach ($questions as $question )
-    Question:<a href="{{route('question.show', ['id' =>$question['id']])}}">{{$question['content']}}</a>
-    <br>
+    @foreach ($summaries as $summary )
+    <div>title:{{$summary->book->title}}</div>
+    <div>title:{{$summary->content}}</div>
     @endforeach
 
 </x-app-layout>

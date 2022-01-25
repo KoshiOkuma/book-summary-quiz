@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class SummaryController extends Controller
 {
+    public function index()
+    {
+        $summaries = Summary::all();
+
+        return view('summary.index', compact('summaries'));
+    }
+
     public function create($id)
     {
         return view('summary.create', compact('id'));
