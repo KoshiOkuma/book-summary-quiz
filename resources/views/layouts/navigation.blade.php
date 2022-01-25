@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         本一覧
                     </x-nav-link>
+                    <x-nav-link :href="route('summary.index')" :active="request()->routeIs('summary.index')">
+                        要約一覧
+                    </x-nav-link>
                     <x-nav-link :href="route('question.index')" :active="request()->routeIs('question.index')">
                         クイズ一覧
                     </x-nav-link>
@@ -77,6 +80,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('index')" :active="request()->routeIs('index')">
                 本一覧
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('summary.index')" :active="request()->routeIs('summary.index')">
+                要約一覧
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('question.index')" :active="request()->routeIs('question.index')">
                 クイズ一覧
