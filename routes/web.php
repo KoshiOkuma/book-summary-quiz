@@ -1,7 +1,9 @@
 <?php
 
+use App\Models\Book;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\SummaryController;
 use App\Http\Controllers\QuestionController;
@@ -57,4 +59,5 @@ Route::post('/mypage/update', [MypageController::class, 'update'])->name('mypage
 Route::post('/mypage/restore/{id}', [MypageController::class, 'restore'])->name('mypage.restore');
 Route::post('/mypage/forceDestroy/{id}', [MypageController::class, 'forceDestroy'])->name('mypage.forceDestroy');
 
+Route::get('/guest/login', [LoginController::class, 'guestLogin'])->name('guestLogin');
 require __DIR__.'/auth.php';

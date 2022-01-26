@@ -54,5 +54,8 @@
                 </x-button>
             </div>
         </form>
+        <button>
+            <a href="{{route('guestLogin')}}">ゲストログイン</a>
+        </button>
     </x-auth-card>
 </x-guest-layout>
