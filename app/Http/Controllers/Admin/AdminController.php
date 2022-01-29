@@ -20,4 +20,15 @@ class AdminController extends Controller
 
         return view('admin.index', compact('users'));
     }
+
+    public function destroy($id)
+    {
+        User::findOrFail($id)->delete();
+
+        return redirect()->route('admin.index')
+        ->with([
+            'message' => "ユーザーを削除しました",
+            'status' => 'info'
+        ]);
+    }
 }

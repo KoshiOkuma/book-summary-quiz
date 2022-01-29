@@ -18,6 +18,8 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/index', [AdminController::class, 'index'])->name('index');
+Route::post('/destroy/{id}', [AdminController::class, 'destroy'])->name('destroy');
+
 
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
