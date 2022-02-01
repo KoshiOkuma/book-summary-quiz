@@ -738,6 +738,9 @@ select {
 .mb-12 {
   margin-bottom: 3rem;
 }
+.ml-48 {
+  margin-left: 12rem;
+}
 .block {
   display: block;
 }
@@ -858,6 +861,9 @@ select {
 .w-28 {
   width: 7rem;
 }
+.w-10 {
+  width: 2.5rem;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -945,6 +951,9 @@ select {
 .justify-items-end {
   justify-items: end;
 }
+.justify-items-center {
+  justify-items: center;
+}
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
@@ -959,6 +968,16 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-hidden {
   overflow: hidden;
