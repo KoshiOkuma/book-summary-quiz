@@ -31,6 +31,7 @@ class MypageController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
+            'avator' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
         ]);
 
         $user = User::findOrFail(Auth::id());
@@ -41,7 +42,6 @@ class MypageController extends Controller
         ->update([
             'name' => $request->name,
             'email' => $request->email,
-            // 'avator' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : $user->avator,
             'avator' => !is_null($filename) ? Storage::putFile('public/images', $filename) : $user->avator,
         ]);
 

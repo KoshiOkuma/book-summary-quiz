@@ -33,6 +33,7 @@ class BookController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:50'],
             'author' => ['required', 'string', 'max:50'],
+            'image' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
         ]);
 
             $imageFile = $request->image;
@@ -76,6 +77,12 @@ class BookController extends Controller
 
     public function update(Request $request)
     {
+        $request->validate([
+            'title' => ['required', 'string', 'max:50'],
+            'author' => ['required', 'string', 'max:50'],
+            'image' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
+        ]);
+
         $book = Book::FindOrFail($request->book_id);
         $imageFile = $request->image;
         if(!is_null($imageFile)){
