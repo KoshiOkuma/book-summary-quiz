@@ -105,7 +105,7 @@ class BookController extends Controller
     {
         Book::findOrFail($id)->delete();
 
-        return redirect()->route('index')
+        return redirect()->route('mypage.index')
         ->with([
             'message' => "本を非表示にしました",
             'status' => 'info'
