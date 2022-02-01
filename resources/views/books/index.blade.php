@@ -5,13 +5,6 @@
         </h2>
     </x-slot> --}}
     <x-flash-message status="session('status')" />
-    @foreach ($books as $book )
-    title: <a href="{{route('show', ['id' => $book->id])}}">{{$book->title}}</a>
-    <br>
-    @endforeach
-    <input type="button" onclick="location.href='{{route('create')}}' " value="新規作成">
-
-
     <section class="text-gray-600 body-font">
         <div class="container px-5 py-12 mx-auto">
             <div class="flex flex-wrap w-full mb-20">
