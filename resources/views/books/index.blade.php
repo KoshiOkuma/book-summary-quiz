@@ -29,7 +29,6 @@
                         </a>
                         <h2 class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$book->title}}</h2>
                         <h3 class="text-lg text-gray-500 font-medium title-font mb-2">著者：{{$book->author}}</h3>
-                        <h4 class="text-lg text-gray-500 font-medium title-font">Created by:{{$book->user->name}}</h4>
                     </div>
                 </div>
                 @endforeach

@@ -40,7 +40,7 @@ class BookController extends Controller
                 $fileName = uniqid(rand().'_');
                 $extension = $imageFile->extension();
                 $fileNameToStore = $fileName . '.' . $extension;
-                $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
+                $resizedImage = Image::make($imageFile)->resize(724, 1024)->encode();
 
                 Storage::put('public/images/' . $fileNameToStore, $resizedImage);
             }
@@ -82,7 +82,7 @@ class BookController extends Controller
             $fileName = uniqid(rand().'_');
             $extension = $imageFile->extension();
             $fileNameToStore = $fileName . '.' . $extension;
-            $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
+            $resizedImage = Image::make($imageFile)->resize(724, 1024)->encode();
 
             Storage::put('public/images/' . $fileNameToStore, $resizedImage);
         }
