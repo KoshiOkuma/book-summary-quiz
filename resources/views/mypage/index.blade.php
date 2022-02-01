@@ -4,9 +4,9 @@
             マイページ
         </h2>
     </x-slot>
-    <x-flash-message status="session('status')" />
     <section class="body-font">
-        <div class="container px-5 py-12 mx-auto">
+        <div class="container px-5 py-8 mx-auto">
+            <x-flash-message status="session('status')" />
             <div class="flex flex-wrap w-full">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">マイページ</h1>
@@ -28,7 +28,7 @@
                             <label for="email" class="text-md text-gray-700">Email</label>
                             <input type="text" name="email" value="{{$user->email}}" class="appearance-none rounded-none px-3 py-2 mt-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                         </div>
-                        <input type="submit" value="プロフィール更新" class="bg-blue-400 text-white p-2 mt-2 rounded-sm">
+                        <input type="submit" value="プロフィール更新" class="bg-blue-400 text-white p-2 mt-2 rounded-md">
                         </form>
                 </div>
             </div>
