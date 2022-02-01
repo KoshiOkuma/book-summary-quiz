@@ -63,13 +63,26 @@ class MypageController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
-        User::where('id', Auth::id())
-        ->update([
-            'name' => $request->name,
-            'email' => $request->email,
+        $user = User::findOrFail(Auth::id());
+
+        $imageFile = $request->avator;
+        if(!is_null($imageFile)){
+            $fileName = uniqid(rand().'_');
+            $extension = $imageFile->extension();
+            $fileNameToStore = $fileName . '.' . $extension;
+            $resizedImage = Image::make($imageFile)->resize(100, 100)->encode();
+
+            Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+        }
+
+            User::where('id', Auth::id())
+            ->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'avator' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : $user->avator,
         ]);
 
         return redirect()->route('mypage.index')

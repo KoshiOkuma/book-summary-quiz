@@ -32,7 +32,24 @@
     </form>
     @endforeach
 
-
+    <div class="flex items-center justify-center">
+        <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
+            <form action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" class="mt-2">
+                @csrf
+                {{-- <div class="text-sm text-gray-900"> --}}
+                <input type="file" name="avator" id="avatar" accept="image/png,image/jpeg,image/jpg">
+                {{-- </div> --}}
+                <img class="mb-3 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ Storage::url($user->avator)}}">
+                {{-- <h1 class="text-lg text-gray-700">{{$user->name}}</h1>
+                <h1 class="text-lg text-gray-700">{{$user->email}}</h1> --}}
+                <label for="answer">名前</label>
+                <input type="text" name="name" value="{{$user->name}}">
+                <label for="email">Email</label>
+                <input type="text" name="email" value="{{$user->email}}">
+                <input type="submit" value="プロフィール更新">
+                </form>
+        </div>
+    </div>
 
     <script>
         function restoreBook(e) {
