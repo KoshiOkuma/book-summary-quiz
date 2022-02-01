@@ -68,21 +68,24 @@ class MypageController extends Controller
 
         $user = User::findOrFail(Auth::id());
 
-        $imageFile = $request->avator;
-        if(!is_null($imageFile)){
-            $fileName = uniqid(rand().'_');
-            $extension = $imageFile->extension();
-            $fileNameToStore = $fileName . '.' . $extension;
-            $resizedImage = Image::make($imageFile)->resize(100, 100)->encode();
+        // $imageFile = $request->avator;
+        // if(!is_null($imageFile)){
+        //     $fileName = uniqid(rand().'_');
+        //     $extension = $imageFile->extension();
+        //     $fileNameToStore = $fileName . '.' . $extension;
+        //     $resizedImage = Image::make($imageFile)->resize(1000, 1000)->encode();
 
-            Storage::put('public/images/' . $fileNameToStore, $resizedImage);
-        }
+        //     Storage::put('public/images/' . $fileNameToStore, $resizedImage);
+        // }
 
-            User::where('id', Auth::id())
-            ->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'avator' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : $user->avator,
+        $filename = $request->avator;
+
+        User::where('id', Auth::id())
+        ->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            // 'avator' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : $user->avator,
+            'avator' => !is_null($filename) ? Storage::putFile('public/images', $filename) : $user->avator,
         ]);
 
         return redirect()->route('mypage.index')

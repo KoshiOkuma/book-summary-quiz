@@ -40,7 +40,7 @@ class BookController extends Controller
                 $fileName = uniqid(rand().'_');
                 $extension = $imageFile->extension();
                 $fileNameToStore = $fileName . '.' . $extension;
-                $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
+                $resizedImage = Image::make($imageFile)->resize(724, 1024)->encode();
 
                 Storage::put('public/images/' . $fileNameToStore, $resizedImage);
             }
@@ -76,13 +76,13 @@ class BookController extends Controller
 
     public function update(Request $request)
     {
-
+        $book = Book::FindOrFail($request->book_id);
         $imageFile = $request->image;
         if(!is_null($imageFile)){
             $fileName = uniqid(rand().'_');
             $extension = $imageFile->extension();
             $fileNameToStore = $fileName . '.' . $extension;
-            $resizedImage = Image::make($imageFile)->resize(100, 160)->encode();
+            $resizedImage = Image::make($imageFile)->resize(724, 1024)->encode();
 
             Storage::put('public/images/' . $fileNameToStore, $resizedImage);
         }
@@ -91,7 +91,7 @@ class BookController extends Controller
         ->update([
             'title' => $request->title,
             'author' => $request->author,
-            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
+            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : $book->image,
         ]);
 
         return redirect()->route('show', ['id' => $request->book_id])
