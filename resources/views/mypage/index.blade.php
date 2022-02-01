@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <x-flash-message status="session('status')" />
-    <section class="text-gray-600 body-font">
+    <section class="body-font">
         <div class="container px-5 py-12 mx-auto">
             <div class="flex flex-wrap w-full">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="flex items-center justify-center">
-                <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-10 max-w-xs">
+                <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-6 max-w-xs">
                     <div>{{$user->name}}さんのプロフィール</div>
                     <form action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" class="mt-2">
                         @csrf
@@ -64,7 +64,7 @@
             <div class="flex flex-wrap w-full">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
                     <h3 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">非表示リスト</h3>
-                    <div class="h-1 w-32 bg-blue-500 rounded"></div>
+                    <div class="h-1 w-44 bg-blue-500 rounded"></div>
                 </div>
             </div>
             <div class="flex flex-wrap -m-4">

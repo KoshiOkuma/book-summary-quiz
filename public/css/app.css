@@ -837,6 +837,9 @@ select {
 .w-24 {
   width: 6rem;
 }
+.w-44 {
+  width: 11rem;
+}
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -1119,6 +1122,9 @@ select {
 }
 .p-10 {
   padding: 2.5rem;
+}
+.p-8 {
+  padding: 2rem;
 }
 .px-4 {
   padding-left: 1rem;
