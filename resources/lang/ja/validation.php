@@ -166,6 +166,8 @@ return [
         'username'              => 'Username',
         'year'                  => 'Year',
         'author'                => '著者',
+        'image'                => '画像',
+        'avator'                => '画像',
     ],
 
 ];
