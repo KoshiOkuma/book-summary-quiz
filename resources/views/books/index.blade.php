@@ -16,12 +16,12 @@
             <div class="flex flex-wrap -m-4">
                 @foreach ($books as $book )
                 <div class="xl:w-1/4 md:w-1/2 p-4">
-                    <div class="bg-gray-100 p-6 rounded-lg">
+                    <div class="bg-slate-50 p-6 rounded-lg">
                         <a href="{{route('show', ['id' => $book->id])}}">
                             <img class="h-40 rounded mb-4" src="{{ Storage::url($book->image)}}" alt="">
                         </a>
                         <h2 class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$book->title}}</h2>
-                        <h3 class="text-lg text-gray-500 font-medium title-font mb-2">著者：{{$book->author}}</h3>
+                        <h3 class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$book->author}}</h3>
                     </div>
                 </div>
                 @endforeach
