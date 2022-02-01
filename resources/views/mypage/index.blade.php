@@ -59,37 +59,39 @@
         </div>
     </section>
 
-    <section class="body-font">
-        <div class="container px-5 py-12 mx-auto">
-            <div class="flex flex-wrap w-full">
-                <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
-                    <h3 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">非表示リスト</h3>
-                    <div class="h-1 w-44 bg-blue-500 rounded"></div>
-                </div>
-            </div>
-            <div class="flex flex-wrap -m-4">
-                @foreach ($notShowing as $notShow )
-                <div class="xl:w-1/4 md:w-1/2 p-4">
-                    <div class="bg-slate-50 p-6 rounded-lg">
-                        <a href="{{route('show', ['id' => $notShow->id])}}">
-                            <img class="h-40 rounded mb-4" src="{{ Storage::url($notShow->image)}}" alt="">
-                        </a>
-                        <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$notShow->title}}</div>
-                        <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$notShow->author}}</div>
-                        <form id="restore_{{ $notShow->id }}" action="{{ route('mypage.restore',['id' => $notShow->id] )}}" method="post">
-                            @csrf
-                            <a href="#" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-sm inline-block">公開する</a>
-                        </form>
-                        <form id="delete_{{ $notShow->id }}" action="{{ route('mypage.forceDestroy',['id' => $notShow->id] )}}" method="post">
-                            @csrf
-                            <a href="#" data-id="{{ $notShow->id }}" onclick="forceDeleteBook(this)" class="bg-red-400 text-white p-2 rounded-sm inline-block">完全に削除する</a>
-                        </form>
+    @if ($notShowing->toArray())
+        <section class="body-font">
+            <div class="container px-5 py-12 mx-auto">
+                <div class="flex flex-wrap w-full">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                        <h3 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">非表示リスト</h3>
+                        <div class="h-1 w-44 bg-blue-500 rounded"></div>
                     </div>
                 </div>
-                @endforeach
+                <div class="flex flex-wrap -m-4">
+                    @foreach ($notShowing as $notShow )
+                    <div class="xl:w-1/4 md:w-1/2 p-4">
+                        <div class="bg-slate-50 p-6 rounded-lg">
+                            <img class="h-40 rounded mb-4" src="{{ Storage::url($notShow->image)}}" alt="">
+                            <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$notShow->title}}</div>
+                            <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$notShow->author}}</div>
+                            <form id="restore_{{ $notShow->id }}" action="{{ route('mypage.restore',['id' => $notShow->id] )}}" method="post">
+                                @csrf
+                                <input type="button" value="公開する" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-sm inline-block">
+                            </form>
+                            <form id="delete_{{ $notShow->id }}" action="{{ route('mypage.forceDestroy',['id' => $notShow->id] )}}" method="post">
+                                @csrf
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $notShow->id }}" onclick="forceDeleteBook(this)">
+                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                            </form>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
     <script>
         function restoreBook(e) {
