@@ -15,6 +15,7 @@
             </div>
             <div class="flex items-center justify-center">
                 <div class="bg-white font-semibold text-center rounded-3xl border shadow-lg p-6 max-w-xs">
+                    <x-auth-validation-errors class="mb-4" :errors="$errors" />
                     <div>{{$user->name}}さんのプロフィール</div>
                     <form action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" class="mt-2">
                         @csrf
