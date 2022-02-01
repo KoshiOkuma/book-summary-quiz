@@ -4,18 +4,6 @@
             本の作成
         </h2>
     </x-slot>
-
-    {{-- <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <label for="title">タイトル</label>
-        <input type="text" name="title" value="{{old('title')}}">
-        <label for="author">著者</label>
-        <input type="text" name="author" value="{{old('author')}}">
-        <label for="image">画像</label>
-        <input type="file" name="image" id="image" accept="image/png,image/jpeg,image/jpg">
-        <input type="button" onclick="location.href='{{route('index')}}' " value="戻る">
-        <input type="submit" value="送信">
-    </form> --}}
     <section class="body-font">
         <div class="w-full  bg-gray-100 flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="flex flex-wrap w-full sm:max-w-md mx-auto pt-48">
@@ -27,7 +15,7 @@
             <div class="w-full sm:max-w-md mx-auto bg-white rounded-3xl border shadow-lg p-6">
             <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <x-auth-validation-errors class="" :errors="$errors" />
+            <x-auth-validation-errors :errors="$errors" />
             <div class="mb-4">
               <label class="block mb-1" for="title">タイトル</label>
               <input id="title" type="text" name="title" value="{{old('title')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
