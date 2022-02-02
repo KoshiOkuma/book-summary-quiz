@@ -139,7 +139,7 @@ return [
         'country'               => 'Country',
         'date'                  => 'Date',
         'day'                   => 'Day',
-        'description'           => 'Description',
+        'description'           => '解説',
         'email'                 => 'メールアドレス',
         'excerpt'               => 'Excerpt',
         'first_name'            => 'First Name',
@@ -168,6 +168,10 @@ return [
         'author'                => '著者',
         'image'                => '画像',
         'avator'                => '画像',
+        'question'                => '問題文',
+        'answer'                => '答え',
+        'wrong_answer1'                => '誤答1',
+        'wrong_answer2'                => '誤答2',
     ],
 
 ];
