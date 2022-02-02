@@ -79,7 +79,7 @@
                             <div class="inline-flex space-x-2">
                                 <form id="restore_{{ $notShow->id }}" action="{{ route('mypage.restore',['id' => $notShow->id] )}}" method="post">
                                     @csrf
-                                    <input type="button" value="公開する" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-sm">
+                                    <input type="button" value="公開する" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-md">
                                 </form>
                                 <form id="delete_{{ $notShow->id }}" action="{{ route('mypage.forceDestroy',['id' => $notShow->id] )}}" method="post">
                                     @csrf

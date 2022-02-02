@@ -5,20 +5,20 @@
         </h2>
     </x-slot>
 
-        <x-flash-message status="session('status')" />
-        <img src="{{ Storage::url($book->image)}}">
+        {{-- <x-flash-message status="session('status')" /> --}}
+        {{-- <img src="{{ Storage::url($book->image)}}">
         <div>title:{{$book->title}}</div>
         <div>author:{{$book->author}}</div>
         @if ($book->summary)
             <div>summary:{{$book->summary->content}}</div>
         @endif
-        @foreach ($book->question as $questions )
+        @foreach ($book->question as $question )
         <div>
-            Question:<a href="{{route('question.show', ['id' =>$questions['id']])}}">{{$questions['content']}}</a>
+            Question:<a href="{{route('question.show', ['id' =>$question['id']])}}">{{$question['content']}}</a>
         </div>
-        @endforeach
-        <div>by {{$book->user->name}}</div>
-        @if (is_null($book->summary) && $book->user_id === Auth::id())
+        @endforeach --}}
+        {{-- <div>by {{$book->user->name}}</div> --}}
+        {{-- @if (is_null($book->summary) && $book->user_id === Auth::id())
             <input type="button" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' " value="要約の作成">
         @endif
         @if ($book->summary && $book->user_id === Auth::id())
@@ -38,7 +38,91 @@
         <div>
             <input type="button" onclick="location.href='{{route('edit', ['id' => $book->id])}}' " value="本の編集">
         </div>
-        @endif
+        @endif --}}
+        <section class="text-gray-600 body-font">
+            <div class="container px-5 py-6 mx-auto">
+                <x-flash-message status="session('status')" />
+                <div class="flex flex-wrap w-full">
+                    <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
+                        <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">本の詳細</h1>
+                        <div class="h-1 w-28 bg-blue-500 rounded"></div>
+                    </div>
+                </div>
+                <div class="flex flex-wrap -m-4">
+                    <div class="xl:w-1/4 md:w-1/2 p-4">
+                        <div class="bg-slate-50 p-2 rounded-lg">
+                            <img class="h-40 mb-4" src="{{ Storage::url($book->image)}}" alt="">
+                            <div class="text-lg text-gray-900 font-medium title-font mb-2">
+                                <div>タイトル：{{$book->title}}</div>
+                                <div>著者：{{$book->author}}</div>
+                                <div>by {{$book->user->name}}</div>
+                                @if ($book->user_id === Auth::id())
+                                <div class="flex justify-between mt-2">
+                                    <div>
+                                        <input type="button" onclick="location.href='{{route('edit', ['id' => $book->id])}}' " value="編集" class="bg-blue-400 text-white p-2 rounded-md">
+                                    </div>
+                                    <div>
+                                        <form id="delete_{{ $book->id }}" action="{{ route('destroy',['id' => $book->id] )}}" method="post">
+                                            @csrf
+                                        <input type="button" value="非公開" data-id="{{ $book->id }}" onclick="deleteBook(this)" class="bg-red-400 text-white p-2 rounded-md">
+                                        </form>
+                                    </div>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="xl:w-1/2 md:w-1/2 p-4">
+                        <div class="bg-slate-50 p-6 rounded-lg">
+                            <div class="text-lg text-gray-900 font-medium title-font mb-2 grid">
+                                <h2 class="sm:text-2xl text-xl font-medium title-font mb-1 text-gray-900">問題</h2>
+                                <div class="h-1 w-12 bg-blue-300 rounded"></div>
+                                @if ($book->question->toArray())
+                                    @foreach ($book->question as $question)
+                                        <div class="mt-2">
+                                        ・<a href="{{route('question.show', ['id' =>$question['id']])}}">{{$question['content']}}</a>
+                                        </div>
+                                        @endforeach
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' ">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                        </svg>
+                                @elseif (!$book->question->toArray() && $book->user_id === Auth::id())
+                                    <div>まだ問題が登録されていません</div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' ">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                    </svg>
+                                @else
+                                    <div>まだ問題が登録されていません</div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="xl:w-full md:w-full p-4 -m-4">
+                    <div class="bg-slate-50 p-6 rounded-lg">
+                        <div class="text-lg text-gray-900 font-medium title-font mb-2 grid">
+                            <h3 class="sm:text-2xl text-xl font-medium title-font mb-1 text-gray-900">要約</h3>
+                            <div class="h-1 w-12 bg-blue-300 rounded"></div>
+                            @if ($book->summary && $book->user_id === Auth::id())
+                                <div class="whitespace-pre-wrap mt-2">{{$book->summary->content}}</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.edit', ['id' => $book->id])}}' ">
+                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                  </svg>
+                            @elseif ($book->summary)
+                                <div class="whitespace-pre-wrap mt-2">{{$book->summary->content}}</div>
+                            @elseif (!$book->summary && $book->user_id === Auth::id())
+                                <div>まだ要約が登録されていません</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' ">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                            @else
+                                <div>まだ要約が登録されていません</div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <script>
             function deleteBook(e) {
                 'use strict'
