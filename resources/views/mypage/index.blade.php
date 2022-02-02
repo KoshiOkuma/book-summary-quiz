@@ -110,7 +110,7 @@
 
         function forceDeleteBook(e) {
             'use strict'
-            if(confirm('完全に削除しますか？この動作は元に戻すことができません。')){
+            if(confirm('完全に削除しますか？この操作は元に戻すことができません。')){
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }

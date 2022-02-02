@@ -47,7 +47,7 @@
                             <div class="text-lg text-gray-900 font-medium title-font mb-2 grid">
                                 <h2 class="sm:text-2xl text-xl font-medium title-font mb-1 text-gray-900">問題</h2>
                                 <div class="h-1 w-12 bg-blue-300 rounded"></div>
-                                @if ($book->question->toArray())
+                                @if ($book->question->toArray() && $book->user_id === Auth::id())
                                     @foreach ($book->question as $question)
                                     <div class="inline-flex">
                                         <div class="mt-2">
@@ -121,13 +121,13 @@
 
         function deleteSummary(e) {
             'use strict'
-            if(confirm('本当に削除しますか？')){
+            if(confirm('本当に削除しますか？この操作は元に戻すことができません。')){
                 document.getElementById('delete_' + e.dataset.id).submit();
             }
         }
         function deleteQuestion(e) {
         'use strict'
-        if(confirm('本当に削除しますか？')){
+        if(confirm('本当に削除しますか？この操作は元に戻すことができません。')){
             document.getElementById('delete_' + e.dataset.id).submit();
         }
     }
