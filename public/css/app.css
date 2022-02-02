@@ -654,6 +654,14 @@ select {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+.mx-8 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -875,6 +883,9 @@ select {
 }
 .w-12 {
   width: 3rem;
+}
+.w-36 {
+  width: 9rem;
 }
 .max-w-6xl {
   max-width: 72rem;
