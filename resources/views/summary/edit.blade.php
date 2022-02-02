@@ -13,17 +13,18 @@
                 </div>
             </div>
             <div class="w-full sm:max-w-md mx-auto bg-white rounded-3xl border shadow-lg p-6">
-            <form action="{{ route('summary.update') }}" method="POST">
-            @csrf
-            <x-auth-validation-errors :errors="$errors" />
-            <div class="mb-4">
-            <textarea name="content" cols="30" rows="10" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full">{{$book->summary->content}}</textarea>
-            <input type="hidden" name="book_id" value="{{$book->id}}">
-            <input type="button" onclick="location.href='{{route('show', ['id' => $book->id])}}' " value="戻る" class="text-gray-500 font-semibold py-2 px-4 mx-4 ">
-            <input type="submit" value="更新" class="ml-2 px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-blue-700 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
-        </form>
+                <form action="{{ route('summary.update') }}" method="POST">
+                @csrf
+                <x-auth-validation-errors :errors="$errors" />
+                <div class="mb-4">
+                    <textarea name="content" cols="30" rows="10" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full">{{$book->summary->content}}</textarea>
+                    <input type="hidden" name="book_id" value="{{$book->id}}">
+                    <input type="button" onclick="location.href='{{route('show', ['id' => $book->id])}}' " value="戻る" class="text-gray-500 font-semibold py-2 px-4 mx-4 ">
+                    <input type="submit" value="更新" class="ml-2 px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-blue-700 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
     </section>
 
     <script>
