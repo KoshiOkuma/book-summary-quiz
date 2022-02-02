@@ -121,15 +121,17 @@ class QuestionController extends Controller
 
     public function update(Request $request)
     {
-
         $request->validate([
             'question' => ['required', 'string', 'max:255'],
+            'answer' => ['required', 'string', 'max:255'],
+            'wrong_answer1' => ['required', 'string', 'max:255'],
+            'wrong_answer2' => ['required', 'string', 'max:255'],
             'description' => ['max:500'],
         ]);
 
         try{
             DB::transaction(function () use($request) {
-                Question::where('id', $request->id)
+                Question::where('id', $request->book_id)
                 ->update([
                     'content' => $request->question,
                     'description' => $request->description,
