@@ -49,7 +49,7 @@
                 <div class="p-4">
                     <div class="bg-slate-50 p-6 rounded-lg">
                         <a href="{{route('show', ['id' => $myBook->id])}}">
-                            <img class="h-40 rounded mb-4" src="{{ Storage::url($myBook->image)}}" alt="">
+                            <img class="h-40 mb-4" src="{{ Storage::url($myBook->image)}}" alt="">
                         </a>
                         <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$myBook->title}}</div>
                         <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$myBook->author}}</div>
@@ -73,13 +73,13 @@
                     @foreach ($notShowing as $notShow )
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-slate-50 p-6 rounded-lg">
-                            <img class="h-40 rounded mb-4" src="{{ Storage::url($notShow->image)}}" alt="">
+                            <img class="h-40 mb-4" src="{{ Storage::url($notShow->image)}}" alt="">
                             <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$notShow->title}}</div>
                             <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$notShow->author}}</div>
                             <div class="inline-flex space-x-2">
                                 <form id="restore_{{ $notShow->id }}" action="{{ route('mypage.restore',['id' => $notShow->id] )}}" method="post">
                                     @csrf
-                                    <input type="button" value="公開する" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-sm">
+                                    <input type="button" value="公開する" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-md">
                                 </form>
                                 <form id="delete_{{ $notShow->id }}" action="{{ route('mypage.forceDestroy',['id' => $notShow->id] )}}" method="post">
                                     @csrf
