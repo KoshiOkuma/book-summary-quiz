@@ -32,14 +32,18 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => ['required', 'string', 'max:255'],
+            'question' => ['required', 'string', 'max:255'],
+            'answer' => ['required', 'string', 'max:255'],
+            'wrong_answer1' => ['required', 'string', 'max:255'],
+            'wrong_answer2' => ['required', 'string', 'max:255'],
+            'description' => ['max:500'],
         ]);
 
         try{
             DB::transaction(function () use($request){
                 Question::create([
                     'book_id' => $request->book_id,
-                    'content' => $request->content,
+                    'content' => $request->question,
                     'description' => $request->description,
                 ]);
 
@@ -119,15 +123,15 @@ class QuestionController extends Controller
     {
 
         $request->validate([
-            'content' => ['required', 'string', 'max:255'],
-            'description' => ['string', 'max:500'],
+            'question' => ['required', 'string', 'max:255'],
+            'description' => ['max:500'],
         ]);
 
         try{
             DB::transaction(function () use($request) {
                 Question::where('id', $request->id)
                 ->update([
-                    'content' => $request->content,
+                    'content' => $request->question,
                     'description' => $request->description,
                 ]);
 

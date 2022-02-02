@@ -7,8 +7,8 @@
     <x-auth-validation-errors class="mb-4" :errors="$errors" />
 <form action="{{ route('question.update') }}" method="POST">
     @csrf
-    <label for="content">問題文</label>
-    <input type="text" name="content" value="{{$question->content}}">
+    <label for="question">問題文</label>
+    <input type="text" name="question" value="{{$question->content}}">
     <label for="answer">答え</label>
     <input type="text" name="answer" value="{{$question->choice[0]->content}}">
     <label for="fail1">誤答1</label>
