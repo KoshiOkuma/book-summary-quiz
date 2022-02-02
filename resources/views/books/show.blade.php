@@ -24,12 +24,17 @@
                                 @if ($book->user_id === Auth::id())
                                 <div class="flex justify-between mt-2">
                                     <div>
-                                        <input type="button" onclick="location.href='{{route('edit', ['id' => $book->id])}}' " value="編集" class="bg-blue-400 text-white p-2 rounded-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('edit', ['id' => $book->id])}}' ">
+                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                        </svg>
                                     </div>
                                     <div>
                                         <form id="delete_{{ $book->id }}" action="{{ route('destroy',['id' => $book->id] )}}" method="post">
                                             @csrf
-                                        <input type="button" value="非公開" data-id="{{ $book->id }}" onclick="deleteBook(this)" class="bg-red-400 text-white p-2 rounded-md">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $book->id }}" onclick="deleteBook(this)">
+                                                <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd" />
+                                                <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
+                                              </svg>
                                         </form>
                                     </div>
                                 </div>
