@@ -20,7 +20,7 @@
                     <form action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" class="mt-2">
                         @csrf
                         <input type="file" name="avator" id="avatar" accept="image/png,image/jpeg,image/jpg" class="text-sm text-gray-700">
-                        <img class="my-4 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ Storage::url($user->avator)}}">
+                        <img class="object-cover my-4 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ Storage::url($user->avator)}}">
                         <div>
                             <label for="answer" class="text-md text-gray-700">Name</label>
                             <input type="text" name="name" value="{{$user->name}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
