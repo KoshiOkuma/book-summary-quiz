@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Throwable;
+use App\Models\Book;
 use App\Models\Choice;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -90,13 +91,15 @@ class QuestionController extends Controller
         return [$question, $choices];
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $book = Book::findOrFail($request->book_id);
+
         list($question, $choices) = $this->showBase($id);
         $answer = $choices[0];
         shuffle($choices);
 
-        return view('questions.show', compact(['question', 'choices', 'answer']));
+        return view('questions.show', compact(['book','question', 'choices', 'answer']));
     }
     public function answer($id)
     {
@@ -121,15 +124,17 @@ class QuestionController extends Controller
 
     public function update(Request $request)
     {
-
         $request->validate([
             'question' => ['required', 'string', 'max:255'],
+            'answer' => ['required', 'string', 'max:255'],
+            'wrong_answer1' => ['required', 'string', 'max:255'],
+            'wrong_answer2' => ['required', 'string', 'max:255'],
             'description' => ['max:500'],
         ]);
 
         try{
             DB::transaction(function () use($request) {
-                Question::where('id', $request->id)
+                Question::where('id', $request->question_id)
                 ->update([
                     'content' => $request->question,
                     'description' => $request->description,
