@@ -42,7 +42,8 @@
           <label class="block mb-1" for="description">解説</label>
           <input id="description" type="text" name="description" value="{{$question->description}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
         </div>
-        <input type="hidden" name="book_id" value="{{$question->id}}">
+        <input type="hidden" name="book_id" value="{{$question->book_id}}">
+        <input type="hidden" name="question_id" value="{{$question->id}}">
         <input type="hidden" name="choices[0]" value="{{$question->choice[0]->id}}">
         <input type="hidden" name="choices[1]" value="{{$question->choice[1]->id}}">
         <input type="hidden" name="choices[2]" value="{{$question->choice[2]->id}}">
