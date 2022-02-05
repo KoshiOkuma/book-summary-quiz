@@ -113,7 +113,7 @@ class QuestionController extends Controller
         list($question, $answer) = $this->showBase($id);
         $book = Book::findOrFail($question->book_id);
 
-        return view('questions.wrong_answer', compact(['question', 'answer']));
+        return view('questions.wrong_answer', compact(['question', 'answer', 'book']));
     }
 
     public function edit($id)
