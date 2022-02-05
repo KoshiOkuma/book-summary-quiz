@@ -102,7 +102,8 @@ class QuestionController extends Controller
     }
     public function answer($id)
     {
-        list($question, $answer) = $this->showBase($id);
+        list($question, $choices) = $this->showBase($id);
+        $answer = $choices[0];
         $book = Book::findOrFail($question->book_id);
 
         return view('questions.answer', compact(['question', 'answer', 'book']));
@@ -110,9 +111,9 @@ class QuestionController extends Controller
 
     public function wrong_answer($id)
     {
-        list($question, $answer) = $this->showBase($id);
+        list($question, $choices) = $this->showBase($id);
+        $answer = $choices[0];
         $book = Book::findOrFail($question->book_id);
-
         return view('questions.wrong_answer', compact(['question', 'answer', 'book']));
     }
 
