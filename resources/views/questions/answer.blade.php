@@ -8,12 +8,12 @@
         <div class="sm:flex ">
             <div class="px-4 mx-auto invisible sm:visible ">
                 <div class="bg-white p-2 rounded-lg">
-                    <a href="{{route('show', ['id' => $book->id])}}">
-                        <img class="h-40 mb-4" src="{{ Storage::url($book->image)}}" alt="">
+                    <a href="{{route('show', ['id' => $question->book_id])}}">
+                        <img class="h-40 mb-4" src="{{ Storage::url($question->book->image)}}" alt="">
                     </a>
                     <div class="text-lg text-gray-900 font-medium title-font mb-2">
-                        <div>タイトル：{{$book->title}}</div>
-                        <div>著者：{{$book->author}}</div>
+                        <div>タイトル：{{$question->book->title}}</div>
+                        <div>著者：{{$question->book->author}}</div>
                     </div>
                 </div>
             </div>

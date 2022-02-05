@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Throwable;
-use App\Models\Book;
 use App\Models\Choice;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -96,25 +95,23 @@ class QuestionController extends Controller
     {
         list($question, $choices, $answer) = $this->showBase($id);
         shuffle($choices);
-        $book = Book::findOrFail($question->book_id);
 
-        return view('questions.show', compact(['question', 'choices', 'answer', 'book']));
+        return view('questions.show', compact(['question', 'choices', 'answer']));
     }
     public function answer($id)
     {
         list($question, $choices) = $this->showBase($id);
         $answer = $choices[0];
-        $book = Book::findOrFail($question->book_id);
 
-        return view('questions.answer', compact(['question', 'answer', 'book']));
+        return view('questions.answer', compact(['question', 'answer']));
     }
 
     public function wrong_answer($id)
     {
         list($question, $choices) = $this->showBase($id);
         $answer = $choices[0];
-        $book = Book::findOrFail($question->book_id);
-        return view('questions.wrong_answer', compact(['question', 'answer', 'book']));
+
+        return view('questions.wrong_answer', compact(['question', 'answer']));
     }
 
     public function edit($id)
