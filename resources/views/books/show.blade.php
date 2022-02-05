@@ -50,10 +50,11 @@
                                 @if ($book->question->toArray() && $book->user_id === Auth::id())
                                     @foreach ($book->question as $question)
                                     <div class="inline-flex">
-                                        <form action="{{route('question.show', ['id' =>$question['id']])}}" method="GET" class="mt-2">
+                                        {{-- <form action="{{route('question.show', ['id' =>$question['id']])}}" method="GET" class="mt-2">
                                             <input type="hidden" name="book_id" value="{{$question->book_id}}">
                                             <input type="submit" value="{{$question['content']}}">
-                                        </form>
+                                        </form> --}}
+                                        <a href="{{route('question.show', ['id' =>$question['id']])}}" class="mt-2">{{$question['content']}}</a>
                                         <form id="delete_{{ $question->id }}" action="{{ route('question.destroy',['id' => $question->id] )}}" method="post">
                                             @csrf
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-10 mt-3" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $question->id }}" onclick="deleteQuestion(this)">

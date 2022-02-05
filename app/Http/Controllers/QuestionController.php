@@ -87,32 +87,33 @@ class QuestionController extends Controller
         foreach($question->choice as $choice){
             array_push($choices, $choice['content']);
         }
+        $answer = $choices[0];
 
-        return [$question, $choices];
+        return [$question, $choices, $answer];
     }
 
-    public function show(Request $request, $id)
+    public function show($id)
     {
-        $book = Book::findOrFail($request->book_id);
-
-        list($question, $choices) = $this->showBase($id);
-        $answer = $choices[0];
+        list($question, $choices, $answer) = $this->showBase($id);
         shuffle($choices);
+        $book = Book::findOrFail($question->book_id);
 
-        return view('questions.show', compact(['book','question', 'choices', 'answer']));
+        return view('questions.show', compact(['question', 'choices', 'answer', 'book']));
     }
     public function answer($id)
     {
-        list($question, $choices) = $this->showBase($id);
+        list($question, $answer) = $this->showBase($id);
+        $book = Book::findOrFail($question->book_id);
 
-        return view('questions.answer', compact(['question', 'choices']));
+        return view('questions.answer', compact(['question', 'answer', 'book']));
     }
 
     public function wrong_answer($id)
     {
-        list($question, $choices) = $this->showBase($id);
+        list($question, $answer) = $this->showBase($id);
+        $book = Book::findOrFail($question->book_id);
 
-        return view('questions.wrong_answer', compact(['question', 'choices']));
+        return view('questions.wrong_answer', compact(['question', 'answer']));
     }
 
     public function edit($id)
