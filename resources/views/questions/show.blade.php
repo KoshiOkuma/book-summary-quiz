@@ -27,15 +27,20 @@
                                 {{route('question.answer', ['id' => $question->id])}}
                                 @else
                                 {{route('question.wrong_answer', ['id' => $question->id])}}
-                                @endif" class="text-base mb-4 px-3 py-2 shadow-lg border border-gray-300 text-gray-900 rounded-t-md rounded-b-md sm:text-sm w-full">
+                                @endif" class="text-base text-center mb-4 px-3 py-2 shadow-lg border border-gray-300 text-gray-900 rounded-t-md rounded-b-md w-full">
                                 {{$choice}}
                         </a>
                     @endforeach
-                    @if ($question->book->user_id === Auth::id())
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 justify-self-end" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.edit', ['id' => $question->id])}}' ">
-                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                    </svg>
-                    @endif
+                    <div class="flex justify-between">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor onclick=" onclick=location.href='{{route('show', ['id' => $question->book_id])}}' ">
+                            <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                        </svg>
+                        @if ($question->book->user_id === Auth::id())
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.edit', ['id' => $question->id])}}' ">
+                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                        </svg>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
