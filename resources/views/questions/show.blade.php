@@ -27,7 +27,7 @@
                                 {{route('question.answer', ['id' => $question->id])}}
                                 @else
                                 {{route('question.wrong_answer', ['id' => $question->id])}}
-                                @endif" class="text-base mb-4 px-3 py-2 shadow-lg border border-gray-300 text-gray-900 rounded-t-md rounded-b-md sm:text-sm w-full">
+                                @endif" class="text-base text-center mb-4 px-3 py-2 shadow-lg border border-gray-300 text-gray-900 rounded-t-md rounded-b-md w-full">
                                 {{$choice}}
                         </a>
                     @endforeach
