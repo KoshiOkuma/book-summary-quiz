@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            要約の編集
-        </h2>
-    </x-slot>
     <section class="body-font">
         <div class="w-full  bg-gray-100 flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="flex flex-wrap w-full sm:max-w-md mx-auto pt-48">
@@ -21,10 +16,9 @@
                     <input type="hidden" name="book_id" value="{{$book->id}}">
                     <input type="button" onclick="location.href='{{route('show', ['id' => $book->id])}}' " value="戻る" class="text-gray-500 font-semibold py-2 px-4 mx-4 ">
                     <input type="submit" value="更新" class="ml-2 px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-blue-700 active:bg-blue-700 focus:outline-none focus:border-blue-700 focus:ring focus:ring-blue-200 disabled:opacity-25 transition">
-                    </form>
+                </form>
                 </div>
             </div>
         </div>
     </section>
-
 </x-app-layout>

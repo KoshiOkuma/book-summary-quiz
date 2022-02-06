@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            クイズ解答
-        </h2>
-    </x-slot>
     <div class="container px-5 sm:py-24">
         <div class="sm:flex ">
             <div class="px-4 mx-auto invisible sm:visible ">
@@ -40,5 +35,4 @@
             </div>
         </div>
     </div>
-
 </x-app-layout>
