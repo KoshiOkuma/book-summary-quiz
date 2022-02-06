@@ -12,19 +12,19 @@
                 @csrf
                 <x-auth-validation-errors :errors="$errors" />
                 <div class="mb-4">
-                    <label class="block mb-1" for="question">問題文</label>
+                    <label class="block mb-1" for="question">問題文*</label>
                     <input id="question" type="text" name="question" value="{{old('question')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
                 </div>
                 <div class="mb-4">
-                    <label class="block mb-1" for="answer">答え</label>
+                    <label class="block mb-1" for="answer">答え*</label>
                     <input id="answer" type="text" name="answer" value="{{old('answer')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
                 </div>
                 <div class="mb-4">
-                    <label class="block mb-1" for="wrong_answer1">誤答1</label>
+                    <label class="block mb-1" for="wrong_answer1">誤答1*</label>
                     <input id="wrong_answer1" type="text" name="wrong_answer1" value="{{old('wrong_answer1')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
                 </div>
                 <div class="mb-4">
-                    <label class="block mb-1" for="wrong_answer2">誤答2</label>
+                    <label class="block mb-1" for="wrong_answer2">誤答2*</label>
                     <input id="wrong_answer2" type="text" name="wrong_answer2" value="{{old('wrong_answer2')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
                 </div>
                 <div class="mb-4">

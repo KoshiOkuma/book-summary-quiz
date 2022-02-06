@@ -12,11 +12,11 @@
                 @csrf
                 <x-auth-validation-errors :errors="$errors" />
                 <div class="mb-4">
-                    <label class="block mb-1" for="title">タイトル</label>
+                    <label class="block mb-1" for="title">タイトル*</label>
                     <input id="title" type="text" name="title" value="{{old('title')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
                 </div>
                 <div class="mb-4">
-                    <label class="block mb-1" for="author">著者</label>
+                    <label class="block mb-1" for="author">著者*</label>
                     <input id="author" type="text" name="author" value="{{old('author')}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm w-full" />
                 </div>
                 <div class="mb-4">

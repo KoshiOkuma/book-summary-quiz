@@ -15,21 +15,21 @@
 
             <!-- Name -->
             <div>
-                <x-label for="name" value="ニックネーム" />
+                <x-label for="name" value="ニックネーム*" />
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus placeholder="NickName"/>
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="email" value="メールアドレス*" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="Email" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="password" value="パスワード*" />
 
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
