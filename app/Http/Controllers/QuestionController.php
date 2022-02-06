@@ -167,12 +167,13 @@ class QuestionController extends Controller
         ]);
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
+        $question = Question::findOrFail($id);
         Choice::where('question_id', $id)->delete();
-        Question::findOrFail($id)->delete();
+        $question->delete();
 
-        return redirect()->route('show', ['id' => $request->book_id])
+        return redirect()->route('show', ['id' => $question->book_id])
         ->with([
             'message' => "問題を削除しました",
             'status' => 'info'
