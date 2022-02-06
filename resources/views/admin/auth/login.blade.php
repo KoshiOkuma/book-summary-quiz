@@ -1,11 +1,17 @@
 <x-guest-layout>
     <x-auth-card>
-        管理者用
-        <a href="{{route('login')}}">ユーザーログイン</a>
+        <div class="flex justify-between mb-2">
+            <div></div>
+            <div>
+                <a href="{{route('login') }}" class="underline text-sm text-gray-600 hover:text-gray-900">ユーザーの方はこちら</a>
+            </div>
+        </div>
+
         <x-slot name="logo">
-            <a href="/">
+            <div class="inline-flex">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+                <span class="ml-3 text-3xl self-center">BookOutput</span>
+            </div>
         </x-slot>
 
         <!-- Session Status -->
@@ -21,7 +27,7 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="Email" />
             </div>
 
             <!-- Password -->
@@ -31,31 +37,29 @@
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="current-password" />
+                                required autocomplete="current-password"
+                                placeholder="Password" />
             </div>
 
             <!-- Remember Me -->
-            <div class="block mt-4">
+            {{-- <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
-            </div>
+            </div> --}}
 
             <div class="flex items-center justify-end mt-4">
-                @if (Route::has('admin.password.request'))
+                {{-- @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
-                @endif
+                @endif --}}
 
-                <x-button class="ml-3">
+                <x-button class="ml-3 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700">
                     {{ __('Log in') }}
                 </x-button>
             </div>
         </form>
-        <button>
-            <a href="{{route('guestLogin')}}">ゲストログイン</a>
-        </button>
     </x-auth-card>
 </x-guest-layout>
