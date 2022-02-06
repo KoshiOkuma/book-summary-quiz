@@ -75,12 +75,12 @@
                                 </div>
                                     @endforeach
                             @elseif (!$book->question->toArray() && $book->user_id === Auth::id())
-                                <div>まだ問題が登録されていません</div>
+                                <div class="mt-2">まだ問題が登録されていません</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-2 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' ">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                 </svg>
                             @else
-                                <div>まだ問題が登録されていません</div>
+                                <div class="mt-2">まだ問題が登録されていません</div>
                             @endif
                         </div>
                     </div>
@@ -108,12 +108,12 @@
                         @elseif ($book->summary)
                             <div class="whitespace-pre-wrap mt-2">{{$book->summary->content}}</div>
                         @elseif (!$book->summary && $book->user_id === Auth::id())
-                            <div>まだ要約が登録されていません</div>
+                            <div class="mt-2">まだ要約が登録されていません</div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' ">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                             </svg>
                         @else
-                            <div>まだ要約が登録されていません</div>
+                            <div class="mt-2">まだ要約が登録されていません</div>
                         @endif
                     </div>
                 </div>
