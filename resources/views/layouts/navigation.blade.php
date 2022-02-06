@@ -6,8 +6,9 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                        <x-application-logo class="block h-10 w-auto fill-current" />
                     </a>
+                    <a href="{{route('dashboard')}}"><span class="ml-3 text-xl">BookOutput</span></a>
                 </div>
 
                 <!-- Navigation Links -->
