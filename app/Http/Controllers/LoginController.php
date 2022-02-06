@@ -17,7 +17,7 @@ class LoginController extends Controller
             ->with([
                 'message' => "ゲストユーザーさん、ようこそ",
                 'status' => 'info'
-            ]);;
+            ]);
         }
     }
 }

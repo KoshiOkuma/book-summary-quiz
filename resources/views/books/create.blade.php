@@ -1,9 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            本の作成
-        </h2>
-    </x-slot>
     <section class="body-font">
         <div class="w-full  bg-gray-100 flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="flex flex-wrap w-full sm:max-w-md mx-auto pt-48">
@@ -33,6 +28,6 @@
                 </form>
             </div>
         </div>
-</section>
+    </section>
 
 </x-app-layout>

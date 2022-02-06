@@ -1,9 +1,10 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
+            <div class="inline-flex">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+                <span class="ml-3 text-3xl self-center">BookOutput</span>
+            </div>
         </x-slot>
 
         <!-- Validation Errors -->
@@ -16,14 +17,14 @@
             <div>
                 <x-label for="name" value="ニックネーム" />
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus placeholder="NickName"/>
             </div>
 
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="Email" />
             </div>
 
             <!-- Password -->
@@ -33,7 +34,8 @@
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required autocomplete="new-password" />
+                                required autocomplete="new-password"
+                                placeholder="Password"/>
             </div>
 
             <!-- Confirm Password -->
@@ -50,7 +52,7 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-4 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700">
                     {{ __('Register') }}
                 </x-button>
             </div>
