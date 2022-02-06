@@ -60,14 +60,14 @@
                 @endif
 
             </div>
+            <div class="flex justify-between">
+                <x-button>
+                    <a href="{{route('guestLogin')}}">ゲストログイン</a>
+                </x-button>
+                <x-button class="ml-3 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700">
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
         </form>
-        <div class="flex justify-between">
-            <x-button>
-                <a href="{{route('guestLogin')}}">ゲストログイン</a>
-            </x-button>
-            <x-button class="ml-3 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700">
-                {{ __('Log in') }}
-            </x-button>
-        </div>
     </x-auth-card>
 </x-guest-layout>
