@@ -50,7 +50,7 @@ class BookController extends Controller
             'user_id' => Auth::id(),
             'title' => $request->title,
             'author' => $request->author,
-            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : '',
+            'image' => !is_null($imageFile) ? 'public/images/' . $fileNameToStore : 'public/images/no_image.jpg',
             ]);
 
 
