@@ -45,13 +45,12 @@
                             @if ($book->question->toArray() && $book->user_id === Auth::id())
                                 @foreach ($book->question as $question)
                                 <div class="inline-flex">
-                                    <a href="{{route('question.show', ['id' =>$question['id']])}}" class="mt-2">{{$question['content']}}</a>
+                                    <a href="{{route('question.show', ['id' =>$question['id']])}}" class="mt-2">・{{$question['content']}}</a>
                                     <form id="delete_{{ $question->id }}" action="{{ route('question.destroy',['id' => $question->id] )}}" method="post">
                                         @csrf
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-10 mt-3 ml-1" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $question->id }}" onclick="deleteQuestion(this)">
                                             <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                         </svg>
-                                        <input type="hidden" name="book_id" value="{{$question->book_id}}">
                                     </form>
                                 </div>
                                     @endforeach
@@ -59,28 +58,16 @@
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                     </svg>
                             @elseif ($book->question->toArray() && $book->user_id !== Auth::id())
-                            @foreach ($book->question as $question)
-                                <div class="inline-flex">
-                                    <form action="{{route('question.show', ['id' =>$question['id']])}}" method="GET" class="mt-2">
-                                        <input type="hidden" name="book_id" value="{{$question->book_id}}">
-                                        <input type="submit" value="{{$question['content']}}">
-                                    </form>
-                                    {{-- <form id="delete_{{ $question->id }}" action="{{ route('question.destroy',['id' => $question->id] )}}" method="post">
-                                        @csrf
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-10 mt-3" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $question->id }}" onclick="deleteQuestion(this)">
-                                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                        </svg>
-                                        <input type="hidden" name="book_id" value="{{$question->book_id}}">
-                                    </form> --}}
-                                </div>
-                                    @endforeach
+                                @foreach ($book->question as $question)
+                                <a href="{{route('question.show', ['id' =>$question['id']])}}" class="mt-2">・{{$question['content']}}</a>
+                                @endforeach
                             @elseif (!$book->question->toArray() && $book->user_id === Auth::id())
-                                <div>まだ問題が登録されていません</div>
+                                <div class="mt-2">まだ問題が登録されていません</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-2 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' ">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                 </svg>
                             @else
-                                <div>まだ問題が登録されていません</div>
+                                <div class="mt-2">まだ問題が登録されていません</div>
                             @endif
                         </div>
                     </div>
@@ -108,12 +95,12 @@
                         @elseif ($book->summary)
                             <div class="whitespace-pre-wrap mt-2">{{$book->summary->content}}</div>
                         @elseif (!$book->summary && $book->user_id === Auth::id())
-                            <div>まだ要約が登録されていません</div>
+                            <div class="mt-2">まだ要約が登録されていません</div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' ">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                             </svg>
                         @else
-                            <div>まだ要約が登録されていません</div>
+                            <div class="mt-2">まだ要約が登録されていません</div>
                         @endif
                     </div>
                 </div>
