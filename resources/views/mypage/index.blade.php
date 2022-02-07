@@ -17,11 +17,11 @@
                         <input type="file" name="avator" id="avatar" accept="image/png,image/jpeg,image/jpg" class="text-sm text-gray-700">
                         <img class="object-cover my-4 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ Storage::url($user->avator)}}">
                         <div>
-                            <label for="answer" class="text-md text-gray-700">Name</label>
+                            <label for="answer" class="text-md">Name</label>
                             <input type="text" name="name" value="{{$user->name}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                         </div>
                         <div>
-                            <label for="email" class="text-md text-gray-700">Email</label>
+                            <label for="email" class="text-md">Email</label>
                             <input type="text" name="email" value="{{$user->email}}" class="appearance-none rounded-none px-3 py-2 mt-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                         </div>
                         <input type="submit" value="プロフィール更新" class="bg-blue-400 text-white p-2 mt-2 rounded-md">
@@ -31,7 +31,7 @@
         </div>
     </section>
 
-    <section class="body-font">
+    <section class="text-gray-600 body-font">
         <div class="container px-5 py-12 mx-auto">
             <div class="flex flex-wrap w-full">
                 <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -46,8 +46,12 @@
                         <a href="{{route('show', ['id' => $myBook->id])}}">
                             <img class="h-40 mb-4" src="{{ Storage::url($myBook->image)}}" alt="">
                         </a>
-                        <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$myBook->title}}</div>
-                        <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$myBook->author}}</div>
+                        <div>
+                            タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$myBook->title}}</span>
+                        </div>
+                        <div>
+                            著者：<span class="text-lg text-gray-800 font-medium title-font mb-2">{{$myBook->author}}</span>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -56,7 +60,7 @@
     </section>
 
     @if ($notShowing->toArray())
-        <section class="body-font">
+        <section class="text-gray-600 body-font">
             <div class="container px-5 py-12 mx-auto">
                 <div class="flex flex-wrap w-full">
                     <div class="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -69,8 +73,12 @@
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-slate-50 p-6 rounded-lg">
                             <img class="h-40 mb-4" src="{{ Storage::url($notShow->image)}}" alt="">
-                            <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$notShow->title}}</div>
-                            <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$notShow->author}}</div>
+                            <div>
+                                タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$notShow->title}}</span>
+                            </div>
+                            <div>
+                                著者：<span class="text-lg text-gray-800 font-medium title-font mb-2">{{$notShow->author}}</span>
+                            </div>
                             <div class="inline-flex space-x-2">
                                 <form id="restore_{{ $notShow->id }}" action="{{ route('mypage.restore',['id' => $notShow->id] )}}" method="post">
                                     @csrf
@@ -78,7 +86,6 @@
                                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
                                         <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                     </svg>
-                                    {{-- <input type="button" value="公開する" data-id="{{ $notShow->id }}" onclick="restoreBook(this)" class="bg-blue-400 text-white p-2 mb-2 rounded-md"> --}}
                                 </form>
                                 <form id="delete_{{ $notShow->id }}" action="{{ route('mypage.forceDestroy',['id' => $notShow->id] )}}" method="post">
                                     @csrf
