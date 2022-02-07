@@ -18,7 +18,7 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = Question::all();
+        $questions = Question::select('*')->paginate(20);
 
         return view('questions.index', compact('questions'));
 
