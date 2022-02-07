@@ -15,12 +15,17 @@
                         <a href="{{route('show', ['id' => $book->id])}}">
                             <img class="h-40 mb-4" src="{{ Storage::url($book->image)}}" alt="">
                         </a>
-                        <div class="text-lg text-gray-900 font-medium title-font mb-2">タイトル：{{$book->title}}</div>
-                        <div class="text-lg text-gray-800 font-medium title-font mb-2">著者：{{$book->author}}</div>
+                        <div>
+                            タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$book->title}}</span>
+                        </div>
+                        <div>
+                            著者：<span class="text-lg text-gray-800 font-medium title-font mb-2">{{$book->author}}</span>
+                        </div>
                     </div>
                 </div>
                 @endforeach
             </div>
+            <div class="mt-4">{{$books->links()}}</div>
         </div>
     </section>
 
