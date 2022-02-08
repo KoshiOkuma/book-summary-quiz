@@ -35,7 +35,7 @@
         <div class=" h-28 bg-white" >
         </div>
         <div class="flex justify-center px-5  -mt-12">
-            <img class="h-32 w-32 bg-white p-2 rounded-full   " src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" alt="" />
+            <img class="object-cover my-4 w-32 h-32 mx-autobg-white p-2 rounded-full" src="{{Storage::url('public/images/profile.jpg')}}" alt="" />
         </div>
             <div class="text-center px-14">
                 <h2 class="text-gray-800 text-3xl font-medium">大隈滉士</h2>
