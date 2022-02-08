@@ -13,11 +13,7 @@ class LoginController extends Controller
     public function guestLogin()
     {
         if (Auth::loginUsingId(self::GUEST_USER_ID)) {
-            return redirect('/')
-            ->with([
-                'message' => "ゲストユーザーさん、ようこそ",
-                'status' => 'info'
-            ]);
+            return redirect('/dashboard');
         }
     }
 }
