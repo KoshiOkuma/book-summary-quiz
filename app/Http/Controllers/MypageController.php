@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class MypageController extends Controller
 {
@@ -28,19 +29,19 @@ class MypageController extends Controller
 
     public function update(Request $request)
     {
+        $user = User::findOrFail(Auth::id());
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'avator' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id),],
+            'avatar' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
         ]);
-
-        $user = User::findOrFail(Auth::id());
 
         User::where('id', Auth::id())
         ->update([
             'name' => $request->name,
             'email' => $request->email,
-            'avator' => !is_null($request->avator) ? Storage::putFile('public/images', $request->avator) : $user->avator,
+            'avatar' => !is_null($request->avatar) ? Storage::putFile('public/images', $request->avatar) : $user->avatar,
         ]);
 
         return redirect()->route('mypage.index')

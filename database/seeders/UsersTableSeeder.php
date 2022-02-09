@@ -19,13 +19,13 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'guest',
                 'email' => 'test@test.com',
-                'avator' => '',
+                'avatar' => 'public/images/no_image.jpg',
                 'password' => Hash::make('password'),
             ],
             [
                 'name' => 'koshi',
                 'email' => 'test2@test.com',
-                'avator' => '',
+                'avatar' => '',
                 'password' => Hash::make('password'),
             ],
         ]);

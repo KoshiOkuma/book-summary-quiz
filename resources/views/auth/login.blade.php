@@ -51,9 +51,10 @@
 
             <div class="flex items-center justify-between mt-4 mb-2">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a></a>
+                    {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
-                    </a>
+                    </a> --}}
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                         {{ __('Register') }}
                     </a>
@@ -64,7 +65,7 @@
                 <button>
                     <a href="{{route('guestLogin')}}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">ゲストログイン</a>
                 </button>
-                <x-button class="ml-3 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700">
+                <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
             </div>
