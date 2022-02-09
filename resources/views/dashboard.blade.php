@@ -5,7 +5,7 @@
     >
     <div
         class="absolute top-0 w-full h-full bg-center bg-cover"
-        style='background-image: url("{{asset('storage/images/dashboard_image.jpg')}}")'
+        style='background-image: url("{{asset('images/dashboard_image.jpg')}}")'
     >
     <span class="w-full h-full absolute opacity-50 bg-gray-900"></span>
     </div>
@@ -34,7 +34,7 @@
             <p class="text-center font-semibold text-3xl text-sky-500 mt-6">~Profile~</p>
         </div>
         <div class="flex justify-center px-5  -mt-12">
-            <img class="object-cover my-4 w-32 h-32 mx-autobg-white p-2 rounded-full" src="{{Storage::url('public/images/profile.jpg')}}" alt="" />
+            <img class="object-cover my-4 w-32 h-32 mx-autobg-white p-2 rounded-full" src="{{asset('images/profile.jpg')}}" alt="" />
         </div>
             <div class="text-center px-14">
                 <h2 class="text-gray-800 text-3xl font-medium">大隈滉士</h2>
