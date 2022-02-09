@@ -14,7 +14,7 @@
                     <div>{{$user->name}}さんのプロフィール</div>
                     <form action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" class="mt-2">
                         @csrf
-                        <input type="file" name="avator" id="avatar" accept="image/png,image/jpeg,image/jpg" class="text-sm text-gray-700">
+                        <input type="file" name="avator" id="avator" accept="image/png,image/jpeg,image/jpg" class="text-sm text-gray-700">
                         <img class="object-cover my-4 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ Storage::url($user->avator)}}">
                         <div>
                             <label for="answer" class="text-md">Name</label>
@@ -25,7 +25,7 @@
                             <input type="text" name="email" value="{{$user->email}}" class="appearance-none rounded-none px-3 py-2 mt-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
                         </div>
                         <input type="submit" value="プロフィール更新" class="bg-blue-400 text-white p-2 mt-2 rounded-md">
-                        </form>
+                    </form>
                 </div>
             </div>
         </div>

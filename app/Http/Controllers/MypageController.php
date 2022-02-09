@@ -36,13 +36,11 @@ class MypageController extends Controller
 
         $user = User::findOrFail(Auth::id());
 
-        $filename = $request->avator;
-
         User::where('id', Auth::id())
         ->update([
             'name' => $request->name,
             'email' => $request->email,
-            'avator' => !is_null($filename) ? Storage::putFile('public/images', $filename) : $user->avator,
+            'avator' => !is_null($request->avator) ? Storage::putFile('public/images', $request->avator) : $user->avator,
         ]);
 
         return redirect()->route('mypage.index')
