@@ -42,14 +42,14 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'avator' => 'public/images/no_image.jpg',
+            'avatar' => 'public/images/no_image.jpg',
             'password' => Hash::make($request->password),
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
-        
+
         return redirect(RouteServiceProvider::HOME)->with([
             'message' => $user['name'] . "さん、ようこそ",
             'status' => 'info'

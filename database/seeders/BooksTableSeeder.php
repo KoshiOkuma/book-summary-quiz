@@ -20,7 +20,7 @@ class BooksTableSeeder extends Seeder
                 'user_id' => 1,
                 'title' => 'test',
                 'author' => 'test1',
-                'image' => ''
+                'image' => 'public/images/no_image.jpg'
             ]
         ]);
     }

@@ -31,7 +31,7 @@ class MypageController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            'avator' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
+            'avatar' => ['image', 'mimes:jpg, jpeg, png', 'max:2048'],
         ]);
 
         $user = User::findOrFail(Auth::id());
@@ -40,7 +40,7 @@ class MypageController extends Controller
         ->update([
             'name' => $request->name,
             'email' => $request->email,
-            'avator' => !is_null($request->avator) ? Storage::putFile('public/images', $request->avator) : $user->avator,
+            'avatar' => !is_null($request->avatar) ? Storage::putFile('public/images', $request->avatar) : $user->avatar,
         ]);
 
         return redirect()->route('mypage.index')
