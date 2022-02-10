@@ -13,7 +13,7 @@
                 @foreach ($questions as $question )
                 <div class="xl:w-1/4 md:w-1/2 p-4">
                     <div class="bg-slate-50 p-6 rounded-lg inline-flex">
-                        <img class="h-40 mb-4" src="{{ Storage::url($question->book->image)}}" alt="">
+                        <img class="h-40 mb-4" src="{{ asset(Storage::url($question->book->image))}}" alt="">
                         <a href="{{route('question.show', ['id' =>$question['id']])}}" class="ml-4 self-center">{{$question['content']}}</a>
                     </div>
                 </div>

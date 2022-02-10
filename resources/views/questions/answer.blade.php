@@ -4,7 +4,7 @@
             <div class="px-4 mx-auto invisible sm:visible ">
                 <div class="bg-white p-2 rounded-lg">
                     <a href="{{route('show', ['id' => $question->book_id])}}">
-                        <img class="h-40 mb-4" src="{{ Storage::url($question->book->image)}}" alt="">
+                        <img class="h-40 mb-4" src="{{ asset(Storage::url($question->book->image))}}" alt="">
                     </a>
                     <div class="text-lg text-gray-900 font-medium title-font mb-2">
                         <div>タイトル：{{$question->book->title}}</div>
