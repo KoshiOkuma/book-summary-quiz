@@ -11,7 +11,7 @@
             <div class="flex flex-wrap -m-4">
                 <div class="xl:w-1/4 md:w-1/2 p-4">
                     <div class="bg-slate-50 p-2 rounded-lg">
-                        <img class="h-40 mb-4" src="{{ Storage::url($book->image)}}" alt="">
+                        <img class="h-40 mb-4" src="{{ asset(Storage::url($book->image))}}" alt="">
                         <div class="text-lg text-gray-900 font-medium title-font mb-2">
                             <div>タイトル：{{$book->title}}</div>
                             <div>著者：{{$book->author}}</div>

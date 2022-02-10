@@ -15,7 +15,7 @@
                     <form action="{{ route('mypage.update') }}" method="POST" enctype="multipart/form-data" class="mt-2">
                         @csrf
                         <input type="file" name="avatar" id="avatar" accept="image/png,image/jpeg,image/jpg" class="text-sm text-gray-700">
-                        <img class="object-cover my-4 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ Storage::url($user->avatar)}}">
+                        <img class="object-cover my-4 w-32 h-32 rounded-full shadow-lg mx-auto" src="{{ asset(Storage::url($user->avatar))}}">
                         <div>
                             <label for="answer" class="text-md">Name</label>
                             <input type="text" name="name" value="{{$user->name}}" class="appearance-none rounded-none px-3 py-2 border border-gray-300 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm">
@@ -44,7 +44,7 @@
                 <div class="p-4">
                     <div class="bg-slate-50 p-6 rounded-lg">
                         <a href="{{route('show', ['id' => $myBook->id])}}">
-                            <img class="h-40 mb-4" src="{{ Storage::url($myBook->image)}}" alt="">
+                            <img class="h-40 mb-4" src="{{ asset(Storage::url($myBook->image))}}" alt="">
                         </a>
                         <div>
                             タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$myBook->title}}</span>
@@ -72,7 +72,7 @@
                     @foreach ($notShowing as $notShow )
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-slate-50 p-6 rounded-lg">
-                            <img class="h-40 mb-4" src="{{ Storage::url($notShow->image)}}" alt="">
+                            <img class="h-40 mb-4" src="{{ asset(Storage::url($notShow->image))}}" alt="">
                             <div>
                                 タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$notShow->title}}</span>
                             </div>
