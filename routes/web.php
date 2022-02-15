@@ -34,6 +34,7 @@ Route::get('/show/{id}', [BookController::class, 'show'])->name('show');
 Route::get('/edit/{id}', [BookController::class, 'edit'])->name('edit');
 Route::post('/update', [BookController::class, 'update'])->name('update');
 Route::post('/destroy/{id}', [BookController::class, 'destroy'])->name('destroy');
+Route::get('/show/user/{id}', [BookController::class, 'showOtherUser'])->name('showOtherUser');
 
 Route::get('/summary/index', [SummaryController::class, 'index'])->name('summary.index');
 Route::get('/summary/create/{id}', [SummaryController::class, 'create'])->name('summary.create');
@@ -58,6 +59,8 @@ Route::get('/mypage/edit/', [MypageController::class, 'edit'])->name('mypage.edi
 Route::post('/mypage/update', [MypageController::class, 'update'])->name('mypage.update');
 Route::post('/mypage/restore/{id}', [MypageController::class, 'restore'])->name('mypage.restore');
 Route::post('/mypage/forceDestroy/{id}', [MypageController::class, 'forceDestroy'])->name('mypage.forceDestroy');
+Route::get('/mypage/show/{id}', [MypageController::class, 'showDeletedBook'])->name('mypage.showDeletedBook');
+
 
 Route::get('/guest/login', [LoginController::class, 'guestLogin'])->name('guestLogin');
 require __DIR__.'/auth.php';

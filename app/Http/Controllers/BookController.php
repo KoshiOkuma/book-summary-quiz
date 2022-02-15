@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Image;
 use App\Models\Book;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Image;
 
 class BookController extends Controller
 {
@@ -117,5 +118,12 @@ class BookController extends Controller
             'message' => "本を非表示にしました",
             'status' => 'info'
         ]);
+    }
+
+    public function showOtherUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('books.showOtherUser', compact('user'));
     }
 }

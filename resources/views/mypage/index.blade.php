@@ -72,7 +72,9 @@
                     @foreach ($notShowing as $notShow )
                     <div class="xl:w-1/4 md:w-1/2 p-4">
                         <div class="bg-slate-50 p-6 rounded-lg">
+                        <a href="{{route('mypage.showDeletedBook', ['id' => $notShow->id])}}">
                             <img class="h-40 mb-4" src="{{ asset(Storage::url($notShow->image))}}" alt="">
+                        </a>
                             <div>
                                 タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$notShow->title}}</span>
                             </div>

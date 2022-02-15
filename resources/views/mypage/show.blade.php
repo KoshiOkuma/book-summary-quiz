@@ -11,33 +11,29 @@
             <div class="flex flex-wrap -m-4">
                 <div class="xl:w-1/4 md:w-1/2 p-4">
                     <div class="bg-slate-50 p-2 rounded-lg">
-                        <img class="h-40 mb-4" src="{{ asset(Storage::url($book->image))}}" alt="">
+                        <img class="h-40 mb-4" src="{{ asset(Storage::url($deletedBook[0]->image))}}" alt="">
                         <div class="text-lg text-gray-900 font-medium title-font mb-2">
-                            <div>タイトル：{{$book->title}}</div>
-                            <div>著者：{{$book->author}}</div>
-                            <div>by
-                                <a href="{{route('showOtherUser', ['id' => $book->user_id])}}">
-                                    {{$book->user->name}}
-                                </a>
-                            </div>
-                            @if ($book->user_id === Auth::id())
+                            <div>タイトル：{{$deletedBook[0]->title}}</div>
+                            <div>著者：{{$deletedBook[0]->author}}</div>
+                            <div>by {{$deletedBook[0]->user->name}}</div>
+                            {{-- @if ($book->user_id === Auth::id()) --}}
                             <div class="flex justify-between mt-2">
                                 <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('edit', ['id' => $book->id])}}' ">
+                                    {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('edit', ['id' => $deletedBook[0]->id])}}' ">
                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                                    </svg>
+                                    </svg> --}}
                                 </div>
                                 <div>
-                                    <form id="delete_{{ $book->id }}" action="{{ route('destroy',['id' => $book->id] )}}" method="post">
+                                    <form id="restore_{{ $deletedBook[0]->id }}" action="{{ route('mypage.restore',['id' => $deletedBook[0]->id] )}}" method="post">
                                         @csrf
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $book->id }}" onclick="deleteBook(this)">
-                                            <path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd" />
-                                            <path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.065 7 9.542 7 .847 0 1.669-.105 2.454-.303z" />
-                                            </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" data-id="{{ $deletedBook[0]->id }}" onclick="restoreBook(this)">
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                        </svg>
                                     </form>
                                 </div>
                             </div>
-                            @endif
+                            {{-- @endif --}}
                         </div>
                     </div>
                 </div>
@@ -46,8 +42,8 @@
                         <div class="text-lg text-gray-900 font-medium title-font mb-2 grid">
                             <h2 class="sm:text-2xl text-xl font-medium title-font mb-1 text-gray-900">問題</h2>
                             <div class="h-1 w-12 bg-blue-300 rounded"></div>
-                            @if ($book->question->toArray() && $book->user_id === Auth::id())
-                                @foreach ($book->question as $question)
+                            @if ($deletedBook[0]->question->toArray())
+                                @foreach ($deletedBook[0]->question as $question)
                                 <div class="inline-flex">
                                     <a href="{{route('question.show', ['id' =>$question['id']])}}" class="mt-2">・{{$question['content']}}</a>
                                     <form id="delete_{{ $question->id }}" action="{{ route('question.destroy',['id' => $question->id] )}}" method="post">
@@ -58,10 +54,13 @@
                                     </form>
                                 </div>
                                     @endforeach
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-2 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' ">
+                                <br>
+                                <div class="mt-2 text-sm text-gray-600">※問題を編集、削除するには本の公開が必要です</div>
+
+                                    {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-2 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $deletedBook[0]->id])}}' ">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                                    </svg>
-                            @elseif ($book->question->toArray() && $book->user_id !== Auth::id())
+                                    </svg> --}}
+                            {{-- @elseif ($book->question->toArray() && $book->user_id !== Auth::id())
                                 @foreach ($book->question as $question)
                                 <a href="{{route('question.show', ['id' =>$question['id']])}}" class="mt-2">・{{$question['content']}}</a>
                                 @endforeach
@@ -69,9 +68,11 @@
                                 <div class="mt-2">まだ問題が登録されていません</div>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mt-2 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('question.create', ['id' => $book->id])}}' ">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                                </svg>
+                                </svg> --}}
                             @else
                                 <div class="mt-2">まだ問題が登録されていません</div>
+                                <br>
+                                <div class="mt-2 text-sm text-gray-600">※問題を登録するには本の公開が必要です</div>
                             @endif
                         </div>
                     </div>
@@ -82,29 +83,34 @@
                     <div class="text-lg text-gray-900 font-medium title-font mb-2 grid">
                         <h3 class="sm:text-2xl text-xl font-medium title-font mb-1 text-gray-900">要約</h3>
                         <div class="h-1 w-12 bg-blue-300 rounded"></div>
-                        @if ($book->summary && $book->user_id === Auth::id())
-                            <div class="whitespace-pre-wrap mt-2">{{$book->summary->content}}</div>
-                            <div class="inline-flex justify-end ">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.edit', ['id' => $book->id])}}' ">
+                        @if ($deletedBook[0]->summary )
+                            <div class="whitespace-pre-wrap mt-2">{{$deletedBook[0]->summary->content}}</div>
+                            <br>
+                            <div class="mt-2 text-sm text-gray-600">※要約を編集、削除するには本の公開が必要です</div>
+                            {{-- <div class="inline-flex justify-end ">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.edit', ['id' => $deletedBook[0]->id])}}' ">
                                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                 </svg>
-                                <form id="delete_{{ $book->summary->id }}" action="{{ route('summary.destroy',['id' => $book->summary->id] )}}" method="post" class="justify-self-end">
+                                <form id="delete_{{ $deletedBook[0]->summary->id }}" action="{{ route('summary.destroy',['id' => $deletedBook[0]->summary->id] )}}" method="post" class="justify-self-end">
                                     @csrf
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-10 " viewBox="0 0 20 20" fill="currentColor" data-id="{{ $book->summary->id }}" onclick="deleteSummary(this)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-10 " viewBox="0 0 20 20" fill="currentColor" data-id="{{ $deletedBook[0]->summary->id }}" onclick="deleteSummary(this)">
                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                     </svg>
-                                    <input type="hidden" name="book_id" value="{{$book->id}}">
+                                    <input type="hidden" name="deletedBook[0]_id" value="{{$deletedBook[0]->id}}">
                                 </form>
-                            </div>
-                        @elseif ($book->summary)
+                            </div> --}}
+                        {{-- @elseif ($book->summary)
                             <div class="whitespace-pre-wrap mt-2">{{$book->summary->content}}</div>
                         @elseif (!$book->summary && $book->user_id === Auth::id())
                             <div class="mt-2">まだ要約が登録されていません</div>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 justify-self-end text-blue-400" viewBox="0 0 20 20" fill="currentColor" onclick="location.href='{{route('summary.create', ['id' => $book->id])}}' ">
                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
-                            </svg>
+                            </svg> --}}
                         @else
                             <div class="mt-2">まだ要約が登録されていません</div>
+                            <br>
+                            <div class="mt-2 text-sm text-gray-600">※要約を登録するには本の公開が必要です</div>
+
                         @endif
                     </div>
                 </div>
@@ -112,10 +118,10 @@
         </div>
     </section>
     <script>
-        function deleteBook(e) {
+        function restoreBook(e) {
             'use strict'
-            if(confirm('本当に非公開にしますか？')){
-                document.getElementById('delete_' + e.dataset.id).submit();
+            if(confirm('本当に公開しますか？')){
+                document.getElementById('restore_' + e.dataset.id).submit();
             }
         }
 
