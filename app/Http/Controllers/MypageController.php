@@ -76,7 +76,7 @@ class MypageController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function showDeletedBook($id)
     {
         $deletedBook = Book::onlyTrashed()
         ->where('user_id', Auth::id())

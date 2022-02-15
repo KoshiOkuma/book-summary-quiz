@@ -58,7 +58,7 @@ Route::get('/mypage/edit/', [MypageController::class, 'edit'])->name('mypage.edi
 Route::post('/mypage/update', [MypageController::class, 'update'])->name('mypage.update');
 Route::post('/mypage/restore/{id}', [MypageController::class, 'restore'])->name('mypage.restore');
 Route::post('/mypage/forceDestroy/{id}', [MypageController::class, 'forceDestroy'])->name('mypage.forceDestroy');
-Route::get('/mypage/show/{id}', [MypageController::class, 'show'])->name('mypage.show');
+Route::get('/mypage/show/{id}', [MypageController::class, 'showDeletedBook'])->name('mypage.showDeletedBook');
 
 
 Route::get('/guest/login', [LoginController::class, 'guestLogin'])->name('guestLogin');
