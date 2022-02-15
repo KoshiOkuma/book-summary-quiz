@@ -34,6 +34,7 @@ Route::get('/show/{id}', [BookController::class, 'show'])->name('show');
 Route::get('/edit/{id}', [BookController::class, 'edit'])->name('edit');
 Route::post('/update', [BookController::class, 'update'])->name('update');
 Route::post('/destroy/{id}', [BookController::class, 'destroy'])->name('destroy');
+Route::get('/show/user/{id}', [BookController::class, 'showOtherUser'])->name('showOtherUser');
 
 Route::get('/summary/index', [SummaryController::class, 'index'])->name('summary.index');
 Route::get('/summary/create/{id}', [SummaryController::class, 'create'])->name('summary.create');

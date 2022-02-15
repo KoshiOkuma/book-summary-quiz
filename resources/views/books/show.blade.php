@@ -15,7 +15,11 @@
                         <div class="text-lg text-gray-900 font-medium title-font mb-2">
                             <div>タイトル：{{$book->title}}</div>
                             <div>著者：{{$book->author}}</div>
-                            <div>by {{$book->user->name}}</div>
+                            <div>by
+                                <a href="{{route('showOtherUser', ['id' => $book->user_id])}}">
+                                    {{$book->user->name}}
+                                </a>
+                            </div>
                             @if ($book->user_id === Auth::id())
                             <div class="flex justify-between mt-2">
                                 <div>
