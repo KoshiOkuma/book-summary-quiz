@@ -16,9 +16,15 @@
                             <div>タイトル：{{$book->title}}</div>
                             <div>著者：{{$book->author}}</div>
                             <div>by
-                                <a href="{{route('showOtherUser', ['id' => $book->user_id])}}">
-                                    {{$book->user->name}}
-                                </a>
+                                @if ($book->user_id !== Auth::id())
+                                    <a href="{{route('showOtherUser', ['id' => $book->user_id])}}" class="underline">
+                                        {{$book->user->name}}
+                                    </a>
+                                @else
+                                    <a href="{{route('mypage.index')}}" class="underline">
+                                        {{$book->user->name}}
+                                    </a>
+                                @endif
                             </div>
                             @if ($book->user_id === Auth::id())
                             <div class="flex justify-between mt-2">
