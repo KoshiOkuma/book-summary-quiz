@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Image;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
