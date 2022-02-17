@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use GuzzleHttp\Client;
 
 class BookController extends Controller
 {
@@ -27,6 +28,47 @@ class BookController extends Controller
     public function create()
     {
         return view('books.create');
+    }
+
+    public function createByAPI(Request $request)
+    {
+        $data = [];
+
+        $items = null;
+
+        if (!empty($request->keyword))
+        {
+            // 検索キーワードあり
+
+            // 日本語で検索するためにURLエンコードする
+            $title = urlencode($request->keyword);
+
+            // APIを発行するURLを生成
+            $url = 'https://www.googleapis.com/books/v1/volumes?q=' . $title . '&country=JP&tbm=bks';
+
+            $client = new Client();
+
+            // GETでリクエスト実行
+            $response = $client->request("GET", $url);
+
+            $body = $response->getBody();
+
+            // レスポンスのJSON形式を連想配列に変換
+            $bodyArray = json_decode($body, true);
+
+            // 書籍情報部分を取得
+            $items = $bodyArray['items'];
+
+            // レスポンスの中身を見る
+            //dd($items);
+        }
+
+        $data = [
+            'items' => $items,
+            'keyword' => $request->keyword,
+        ];
+
+        return view('books.createByAPI', compact('data'));
     }
 
     public function store(Request $request)
@@ -60,6 +102,11 @@ class BookController extends Controller
             'message' => "本の登録を実施しました",
             'status' => 'info'
         ]);
+    }
+
+    public function storeByAPI(Request $request)
+    {
+        
     }
 
     public function show($id)

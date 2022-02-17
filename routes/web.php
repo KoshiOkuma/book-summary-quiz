@@ -29,7 +29,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/', [BookController::class, 'index'])->name('index');
 Route::get('/create', [BookController::class, 'create'])->name('create');
+Route::get('/createByAPI', [BookController::class, 'createByAPI'])->name('createByAPI');
 Route::post('/store', [BookController::class, 'store'])->name('store');
+Route::post('/storeByAPI', [BookController::class, 'storeByAPI'])->name('storeByAPI');
 Route::get('/show/{id}', [BookController::class, 'show'])->name('show');
 Route::get('/edit/{id}', [BookController::class, 'edit'])->name('edit');
 Route::post('/update', [BookController::class, 'update'])->name('update');
