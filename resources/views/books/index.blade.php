@@ -13,7 +13,11 @@
                 <div class="xl:w-1/4 md:w-1/2 p-4">
                     <div class="bg-slate-50 p-6 rounded-lg">
                         <a href="{{route('show', ['id' => $book->id])}}">
-                            <img class="h-40 mb-4" src="{{ asset(Storage::url($book->image))}}" alt="">
+                            @if (str_starts_with($book->image, 'p') )
+                                <img class="h-40 mb-4" src="{{ asset(Storage::url($book->image))}}" alt="">
+                            @else
+                                <img class="h-40 mb-4" src="{{ $book->image}}" alt="">
+                            @endif
                         </a>
                         <div>
                             タイトル：<span class="text-lg text-gray-900 font-medium title-font mb-2">{{$book->title}}</span>
