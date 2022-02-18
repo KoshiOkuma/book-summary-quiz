@@ -60,7 +60,7 @@ class BookController extends Controller
             $items = $bodyArray['items'];
 
             // レスポンスの中身を見る
-            //dd($items);
+            // dd($items);
         }
 
         $data = [
@@ -106,7 +106,7 @@ class BookController extends Controller
 
     public function storeByAPI(Request $request)
     {
-        
+        dd($request);
     }
 
     public function show($id)
