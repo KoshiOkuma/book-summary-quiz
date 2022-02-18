@@ -106,7 +106,19 @@ class BookController extends Controller
 
     public function storeByAPI(Request $request)
     {
-        dd($request);
+        Book::create([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'author' => $request->author,
+            'image' => $request->image,
+            ]);
+
+
+        return redirect()->route('index')
+        ->with([
+            'message' => "本の登録を実施しました",
+            'status' => 'info'
+        ]);
     }
 
     public function show($id)
