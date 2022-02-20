@@ -4,7 +4,11 @@
             <div class="px-4 mx-auto invisible sm:visible ">
                 <div class="bg-white p-2 rounded-lg">
                     <a href="{{route('show', ['id' => $question->book_id])}}">
-                        <img class="h-40 mb-4" src="{{ asset(Storage::url($question->book->image))}}" alt="">
+                        @if (str_starts_with($question->book->image, 'p') )
+                            <img class="h-40 mb-4" src="{{ asset(Storage::url($question->book->image))}}" alt="">
+                        @else
+                            <img class="h-40 mb-4" src="{{ $question->book->image}}" alt="">
+                        @endif
                     </a>
                     <div class="text-lg text-gray-900 font-medium title-font mb-2">
                         <div>タイトル：{{$question->book->title}}</div>

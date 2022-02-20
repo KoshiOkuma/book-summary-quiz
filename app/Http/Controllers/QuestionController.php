@@ -18,7 +18,10 @@ class QuestionController extends Controller
 
     public function index()
     {
-        $questions = Question::select('*')->paginate(20);
+        $questions = Question::select('*')
+        ->leftjoin('books', 'books.id', '=', 'questions.book_id')
+        ->whereNull('books.deleted_at')
+        ->paginate(20);
 
         return view('questions.index', compact('questions'));
 

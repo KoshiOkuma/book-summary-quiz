@@ -11,7 +11,11 @@
             <div class="flex flex-wrap -m-4">
                 <div class="xl:w-1/4 md:w-1/2 p-4">
                     <div class="bg-slate-50 p-2 rounded-lg">
-                        <img class="h-40 mb-4" src="{{ asset(Storage::url($deletedBook[0]->image))}}" alt="">
+                        @if (str_starts_with($deletedBook[0]->image, 'p') )
+                            <img class="h-40 mb-4" src="{{ asset(Storage::url($deletedBook[0]->image))}}" alt="">
+                        @else
+                            <img class="h-40 mb-4" src="{{ $deletedBook[0]->image}}" alt="">
+                        @endif
                         <div class="text-lg text-gray-900 font-medium title-font mb-2">
                             <div>タイトル：{{$deletedBook[0]->title}}</div>
                             <div>著者：{{$deletedBook[0]->author}}</div>
